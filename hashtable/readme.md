@@ -1,0 +1,3 @@
+- Problems solved using hash table have a tradeoff of space
+- If you are using low end mobile device, you should rather prefer time complexity over space. 
+- For an example, finding duplicate can be solved using sorting by (nlogn) and (0) space but with hashtable it take (n) space and (n) time

@@ -6,6 +6,11 @@
 # 3: What if there are two pairs which add up to the target? 
 # 4: What if there is no pair found? 
 
+# Test Cases:
+# Edge Case: empty array and null array
+# Base case:  single element or only two elements
+# regular cases:  more thn two elements
+
 
 input = [3, 4, 1, 2, 9]
 
