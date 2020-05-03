@@ -1,8 +1,6 @@
 # Find the greatest common denominator of two numbers
 # using Euclid's algorithm
 
-
-
 def gcd(a, b):
     while (b!=0): 
         t = a;

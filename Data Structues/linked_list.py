@@ -23,12 +23,12 @@ class LinkedList(object):
         self.count += 1
 
     def insert_at_end(self, data):
-        new_node = Node(data);
+        new_node = Node(data)
         temp = self.head
         while (temp.next !=  None):
             temp = temp.next
 
-        temp.next = new_node;
+        temp.next = new_node
         self.count += 1
 
     def find(self, val):
