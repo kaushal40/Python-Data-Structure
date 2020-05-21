@@ -18,3 +18,16 @@ def even_odd(data):
 
 print(even_odd([1,4,3,5,2,6,35,7,2,5]))
 
+# given an array A of n objects with boolean-valued keys, reorder the array so that obj 
+# with the key false appear first.
+
+E = [True, False, False, True, True, False]
+
+def reorderBool(A):
+    falses, trues = 0, len(A)
+    while falses < trues:
+        if A[falses] == False:
+            falses += 1
+        elif A[falses] == True:
+            trues -= 1
+            A[falses], A[trues] = A[trues], A[falses]
