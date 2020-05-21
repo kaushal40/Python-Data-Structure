@@ -50,6 +50,22 @@ print([x**2 for x in range(6) if x % 2 == 0])
 
 #pyhtin array itrate
 A = [1, 6, 3, 4, 5, 2, 7]
-for i in range(len(A)) #  0, 1, 2, 3, 4, 5, 6 iteration throgh index 
-for i in reversed(range(len(A))) # 6,5,4,3,2,1,0 iteration in reverse order
+#0, 1, 2, 3, 4, 5, 6 iteration throgh index
+for i in range(len(A)) : pass
+# 6,5,4,3,2,1,0 iteration in reverse order
+for i in reversed(range(len(A))): pass
+
+# String
+s = "kaushal"
+t = "prajapati"
+print(s[3])
+print(len(s))
+print(s + " " + t)
+print(s[2:4])
+print(s.strip())
+print(s.startswith("kau"))
+print(s.endswith("kau"))
+print('Euclid,Axiom 5,Parallel Lines'.split(','))
+print(s.upper())
+print(t.lower())
 
