@@ -7,6 +7,32 @@ class Node(object):
         self.val = val
         self.next = None
 
+# creating linked list node to be 
+class ListNode():
+    def __init__(self, data=0, next_node=None):
+        self.data =  data
+        self.next = next_node
+
+# serach in the linked list
+def search_linke_list(L, data):
+    while L and L.data is data:
+        L = L.next
+    return L
+
+# insert node after some node
+def insert_after(node, new_node):
+    # current node's next will be new node's next
+    new_node.next =  node.next
+    # node's next will be new  node
+    node.next = new_node
+
+# delete the node past some node
+def delete_after(node):
+    node.next =  node.next.next
+
+
+
+
 # the LinkedList class
 class LinkedList(object):
     def __init__(self, head=None):
