@@ -69,3 +69,6 @@ print('Euclid,Axiom 5,Parallel Lines'.split(','))
 print(s.upper())
 print(t.lower())
 
+# python array initialization of fixed size
+lst = [None] * 5
+print(lst)

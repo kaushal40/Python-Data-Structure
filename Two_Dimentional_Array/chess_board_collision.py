@@ -1,7 +1,6 @@
 # if the pyada collide with each other in any row
 # input will be a mattrix with 0 and 1
 
-def rooks_are_sf
 
 def rooks_are_safe(input):
     # row by row traversing
