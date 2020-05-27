@@ -67,9 +67,15 @@
 **Technique 2 Subarray Sliding window**
 - Ask relavent question to array, +ve or -ve, sorted, null or empty, what result to return 
 - sliding window only works on positive numbers otherwise you can't slide the window
-- *hint* : see if all are positive number, sliding window might help 
+- *hint* : see if all are positive number, sliding window might help, also unique charachter
 
 1. subarray that sums to target
 
 ![alt text](sliding_window_1.png "Title")
 ![alt text](sliding_window_2.png "Title")
+
+2. Find longest substring with unique charachters
+
+![alt text](sliding_window_3.png "Title")
+
+
