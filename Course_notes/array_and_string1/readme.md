@@ -6,15 +6,21 @@
 4. 2D array representation in memory
 
 ----
+----
 **2D array representation in memory**
 
 ![alt text](2d_representation.png "Title")
 
 ----
+----
+
 **Reverse traversal technique**
 1. Replace all even numbers using same of two
 
 ![alt text](reverse_traversal.png "Title")
+
+----
+----
 
 **Two pointer technique**
 1. Reverse elements in array
@@ -28,6 +34,7 @@
 ![alt text](find_subarray_which_makes_Array_sorted.png "Title")
 
 ----
+----
 **Partitioning Arrays**
 1. Dutch Flag problem
 2. Move all zeros to front
@@ -40,4 +47,18 @@
 
 ![alt text](partition3.png "Title")
 
+
+----
+----
+**Subarray Sum Problems**
+- Understand the difference between subarray and subsets
+- Subarray is always contiguous and subset is any elemants from the array
+
+**Technique 1 (KADANE's algorithm)**
+- Good to be used when it is contiguous
+
+1. Find the subarray with maximum sum 
+
+![alt text](Kadane's_explaination.png "Title")
+![alt text](Subarray_sum_kadanes.png "Title")
 
