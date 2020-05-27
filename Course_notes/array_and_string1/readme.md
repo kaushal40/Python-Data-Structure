@@ -9,7 +9,7 @@
 ----
 **2D array representation in memory**
 
-![alt text](images/2d_representation.png "Title")
+![alt text](images/images/2d_representation.png "Title")
 
 ----
 ----
@@ -17,7 +17,7 @@
 **Reverse traversal technique**
 1. Replace all even numbers using same of two
 
-![alt text](reverse_traversal.png "Title")
+![alt text](images/reverse_traversal.png "Title")
 
 ----
 ----
@@ -29,9 +29,9 @@
 4. Array fo integer, find a continuous subarray when sorterd makes entire array sorted
 
 
-![alt text](traverse_both_ends.png "Title")
-![alt text](sorted_array_squares.png "Title")
-![alt text](find_subarray_which_makes_Array_sorted.png "Title")
+![alt text](images/traverse_both_ends.png "Title")
+![alt text](images/sorted_array_squares.png "Title")
+![alt text](images/find_subarray_which_makes_Array_sorted.png "Title")
 
 ----
 ----
@@ -41,11 +41,11 @@
 3. Move all zeros to back
 4. Three way partitioning (Dutch Flag Problem)
 
-![alt text](partition1.png "Title")
+![alt text](images/partition1.png "Title")
 
-![alt text](partition2.png "Title")
+![alt text](images/partition2.png "Title")
 
-![alt text](partition3.png "Title")
+![alt text](images/partition3.png "Title")
 
 
 ----
@@ -61,8 +61,8 @@
 
 1. Find the subarray with maximum sum 
 
-![alt text](Kadane's_explaination.png "Title")
-![alt text](Subarray_sum_kadanes.png "Title")
+![alt text](images/Kadane's_explaination.png "Title")
+![alt text](images/Subarray_sum_kadanes.png "Title")
 
 **Technique 2 Subarray Sliding window**
 - Ask relavent question to array, +ve or -ve, sorted, null or empty, what result to return 
@@ -71,14 +71,14 @@
 
 1. subarray that sums to target
 
-![alt text](sliding_window_1.png "Title")
-![alt text](sliding_window_2.png "Title")
+![alt text](images/sliding_window_1.png "Title")
+![alt text](images/sliding_window_2.png "Title")
 
 ----
 
 2. Find longest substring with unique charachters
 
-![alt text](sliding_window_3.png "Title")
+![alt text](images/sliding_window_3.png "Title")
 
 
 **Technique 3 Prefix sum**
@@ -92,12 +92,12 @@
 
 - if only one result KADANE will help as well, but there are two properties so you can missout on other one
 
-![alt text](prefix_sum_1.png "Title")
+![alt text](images/prefix_sum_1.png "Title")
 
-![alt text](prefix_sum_2.png "Title")
+![alt text](images/prefix_sum_2.png "Title")
 
 ----
 
 2. Find subarray which sums to X
 
-![alt text](prefix_sum_3.png "Title")
+![alt text](images/prefix_sum_3.png "Title")
