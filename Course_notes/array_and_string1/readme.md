@@ -81,3 +81,23 @@
 ![alt text](sliding_window_3.png "Title")
 
 
+**Technique 3 Prefix sum**
+
+- Ask relavent question, like what is return type and what if there are multiple results
+- This has two properties, which can be utilized to find array with sum = X
+- can be postive and negative both
+- Kadane's can be used when there is single result
+
+1. Find subarray which sums to zero
+
+- if only one result KADANE will help as well, but there are two properties so you can missout on other one
+
+![alt text](prefix_sum_1.png "Title")
+
+![alt text](prefix_sum_2.png "Title")
+
+----
+
+2. Find subarray which sums to X
+
+![alt text](prefix_sum_3.png "Title")
