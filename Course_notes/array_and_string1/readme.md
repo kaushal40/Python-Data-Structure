@@ -74,6 +74,8 @@
 ![alt text](sliding_window_1.png "Title")
 ![alt text](sliding_window_2.png "Title")
 
+----
+
 2. Find longest substring with unique charachters
 
 ![alt text](sliding_window_3.png "Title")
