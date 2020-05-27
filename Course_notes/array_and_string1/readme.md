@@ -56,7 +56,8 @@
 
 **Technique 1 (KADANE's algorithm)**
 - Good to be used when it is contiguous
-*hint* : positive + negative number you can use KADANE's algorithm
+
+- *hint* : positive + negative number you can use KADANE's algorithm
 
 1. Find the subarray with maximum sum 
 
@@ -66,9 +67,9 @@
 **Technique 2 Subarray Sliding window**
 - Ask relavent question to array, +ve or -ve, sorted, null or empty, what result to return 
 - sliding window only works on positive numbers otherwise you can't slide the window
-*hint* : see if all are positive number, sliding window might help 
+- *hint* : see if all are positive number, sliding window might help 
 
 1. subarray that sums to target
 
-![alt text](sliding_window_1.png"Title")
+![alt text](sliding_window_1.png "Title")
 ![alt text](sliding_window_2.png "Title")
