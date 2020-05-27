@@ -35,5 +35,18 @@
 ![alt text](images/systemdesign_4.png "Title")
 
 
+------
+------
+
+**LOAD BALANCER**
+
+![alt text](images/loadb_1.png "Title")
+
+![alt text](images/loadb_2.png "Title")
+
+![alt text](images/loadb_3.png "Title")
+
+![alt text](images/loadb_4.png "Title")
+
 
 
