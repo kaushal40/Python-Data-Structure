@@ -6,17 +6,38 @@
 4. 2D array representation in memory
 
 ----
+**2D array representation in memory**
 
 ![alt text](2d_representation.png "Title")
 
+----
+**Reverse traversal technique**
+1. Replace all even numbers using same of two
 
 ![alt text](reverse_traversal.png "Title")
 
+**Two pointer technique**
+1. Reverse elements in array
+2. Sorted array two sum problem
+3. Sorted array non decreasing order, sqaures of each number non decreasing. 
+4. Array fo integer, find a continuous subarray when sorterd makes entire array sorted
+
 
 ![alt text](traverse_both_ends.png "Title")
+![alt text](sorted_array_squares.png "Title")
+![alt text](find_subarray_which_makes_Array_sorted.png "Title")
+
+----
+**Partitioning Arrays**
+1. Dutch Flag problem
+2. Move all zeros to front
+3. Move all zeros to back
+4. Three way partitioning (Dutch Flag Problem)
 
 ![alt text](partition1.png "Title")
 
 ![alt text](partition2.png "Title")
 
 ![alt text](partition3.png "Title")
+
+
