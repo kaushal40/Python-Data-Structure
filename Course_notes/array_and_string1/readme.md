@@ -9,7 +9,7 @@
 ----
 **2D array representation in memory**
 
-![alt text](images/images/2d_representation.png "Title")
+![alt text](images/2d_representation.png "Title")
 
 ----
 ----
