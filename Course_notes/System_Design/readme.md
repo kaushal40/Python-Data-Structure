@@ -62,3 +62,27 @@
 3. Distributed Hash Table
 4. Distributed Key-Value Stores
 
+**CAP THEOREM**
+
+*ACID*
+- ACID DBs are Consistent and Base DBs are Eventually Consistent
+- Atomic - Everything in the write/update succeeds or the entire operation is rolled back
+- Consistent - The database will never be in a state where two reads to the same DB get different value.
+- Isolated - Operations cannot interfere with each other.
+- Durable - Completed operations are persisted, even if the machine restarts, etc.
+
+*BASE*
+- Basic Availability
+- Soft State
+- Eventual Consistency
+- With BASE, instead of requiring consistency in each transaction, it is ok to return different values until the update is eventually applied. The system will prioritize Availability over Consistency.
+
+
+- Where is it ok to have Eventual Consistency? : Let’s say you are storing blog posts. it's okay to show old post until updated.
+
+- Where would you want Consistency? Let’s say you are storing user passwords. Old password should not work anywhere. 
+
+**SHRADING PARTITION FUNCTION**
+
+![alt text](images/sharding-partition-function.png "Title")
+
