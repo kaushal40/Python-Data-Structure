@@ -48,5 +48,17 @@
 
 ![alt text](images/loadb_4.png "Title")
 
+------
+------
 
+**SHRADING**
+
+- it's splitting db in small pieces and find some way (logic) to make it work togather - find what piece is where
+- What can be shradded? 
+1. Distributed Database
+2. Distributed Cache - Memcached is a high-performance, distributed caching system. Although application-neutral, it's most commonly used to speed up dynamic Web applications by alleviating database load
+[Memchche article](linuxjournal.com/article/7451)
+![alt text](images/memcahce.jpg "Title")
+3. Distributed Hash Table
+4. Distributed Key-Value Stores
 
