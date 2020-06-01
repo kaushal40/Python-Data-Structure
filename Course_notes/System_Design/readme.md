@@ -77,6 +77,7 @@
 - Eventual Consistency
 - With BASE, instead of requiring consistency in each transaction, it is ok to return different values until the update is eventually applied. The system will prioritize Availability over Consistency.
 
+![alt text](images/CAP.png "Title")
 
 - Where is it ok to have Eventual Consistency? : Let’s say you are storing blog posts. it's okay to show old post until updated.
 
