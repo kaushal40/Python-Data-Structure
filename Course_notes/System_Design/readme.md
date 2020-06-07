@@ -90,3 +90,7 @@
 **DYNAMIC SHRADDING**
 
 ![alt text](images/sharding-dynamic.png "Title")
+
+**SHARADING CONSISTENET HASHING**
+
+![alt text](images/shrading-consistent-hashing.png "Title")
