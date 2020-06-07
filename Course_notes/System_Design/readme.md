@@ -87,3 +87,6 @@
 
 ![alt text](images/sharding-partition-function.png "Title")
 
+**DYNAMIC SHRADDING**
+
+![alt text](images/sharding-dynamic.png "Title")
