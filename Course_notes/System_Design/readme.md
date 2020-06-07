@@ -93,4 +93,7 @@
 
 **SHARADING CONSISTENET HASHING**
 
+- With Consistent Hashing, you can minimize the movement of data when adding a new node in a distributed database.
+
 ![alt text](images/shrading-consistent-hashing.png "Title")
+
