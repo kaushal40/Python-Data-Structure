@@ -26,6 +26,7 @@
 -------------
 ------------------------
 
+![alt text](images/recursion_visulized.png "Title")
 
 **AUXILLARY BUFFER RECURSION**
 - Buffer is a good way to implement *TOP-DOWN* recusrsion.
@@ -120,9 +121,53 @@ A. Yes
     </embed>
 </object>
 
+https://www.youtube.com/watch?v=nYFd7VHKyWQ
+
+----------------------------------------------------------------
+----------------------------------------------------------------
+
+**BACKTRACKING**
 
 
+![alt text](images/backtracking_technique.png "Title")
+
+Core Idea
+1. From every ​a[i][j]​, check if there is a path to theend.
+2. Steps/Splits:  Check from left element, right element, up and down.
+3. Converge/Collect If any of the checks returns ​true​, return ​true​.
+4. MemoizationCan we memoize? Yes, for every element, we cansave three states: ​UNVISITED​, ​VISITING​, NO_PATH_FOUND​.
+5. Base Cases: a[i][j]​ is Out of Bounds, Wall,or the  last element
+
+- Maze Problem: You are given a 2D array that represents a maze. It can have 2 values - 0 and 1. 1 represents a wall and 0 represents a path. The objective of the maze is to reach the bottom right corner, or A[A.length-1][A.length-1]. You start from A[0][0] and can only go in 4 directions - up, down, left or right. Find if a path exists.
+
+Q. How do you want the output?
+A. Return ​true​  if a path exists.
+Q. Does it matter if the end is a path or a wall?
+A. It doesn't matter, the last element (​A[A.length-1][A.length-1]​) can be anything. You just have to getthere.
+Q. What if the array is empty or null?
+A. Return ​false​ (no path exists).
+Q. What if the array has just one element, e.g, ​{0}​ or ​{1}​.
+A. Return ​true​, because we're already at the last element.
+
+![alt text](images/backtracking_maze_problem.png "Title")
+![alt text](images/no_momoization_complexity.png "Title")
+![alt text](images/with_memoization_complexity.png "Title")
+
+- Similar Problems 
+
+1. Word break problem
+
+![alt text](images/word_break_back_tracking.png "Title")
+![alt text](images/word_break-2.png "Title")
+![alt text](images/word_break_3.png "Title")
+![alt text](images/word_break_4.png "Title")
 
 
+2. Sudoku solver
+2. n-queens problem
 
-
+<object data="https://www.filepicker.io/api/file/kturPJRISaqQ3SM4ckut" type="application/pdf" width="700px" height="700px">
+    <embed src="https://www.filepicker.io/api/file/kturPJRISaqQ3SM4ckut">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://www.filepicker.io/api/file/kturPJRISaqQ3SM4ckut">Download PDF</a>.</p>
+    </embed>
+</object>
