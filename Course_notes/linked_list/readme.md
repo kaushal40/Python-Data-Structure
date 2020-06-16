@@ -17,3 +17,25 @@ Result 2: Head -> 2 -> 4
 - Delete a node from the list when previous node is not given
 
 ![alt text](images/linkedlist_4.png "Title")
+
+**LiNKED LIST SLOW AND FAST POINTER**
+
+![alt text](images/linkedlist_5.png "Title")
+![alt text](images/linkedlist_6.png "Title")
+![alt text](images/linkedlist_7.png "Title")
+![alt text](images/linkedlist_8.png "Title")
+
+
+**LINKED LIST HASHTABLE**
+
+![alt text](images/linked_hash_table.png "Title")
+![alt text](images/linked_hash_table_lru1.png "Title")
+![alt text](images/linked_hash_table_lru2.png "Title")
+
+- implement the data structure for least recently used cache
+
+![alt text](images/linked_list_9.png "Title")
+
+- reverse a linked list
+
+![alt text](images/linked_list_reverse.png "Title")
