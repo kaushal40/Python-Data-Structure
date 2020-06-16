@@ -39,3 +39,4 @@ Result 2: Head -> 2 -> 4
 - reverse a linked list
 
 ![alt text](images/linked_list_reverse.png "Title")
+![alt text](images/linked_list_palindrome.png "Title")
