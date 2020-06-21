@@ -36,3 +36,8 @@ public enum State {
 State[][] memo = new State[a.length][a[0].length];    
 for (State[] states: memo)        
     Arrays.fill(states, State.UNVISITED);
+
+
+if(isOperand(c)){
+    operand.push(ch-'0');
+}
