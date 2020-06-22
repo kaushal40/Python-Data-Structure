@@ -41,3 +41,6 @@ for (State[] states: memo)
 if(isOperand(c)){
     operand.push(ch-'0');
 }
+
+
+Queue<Integer> q = new LinkedList<>();
