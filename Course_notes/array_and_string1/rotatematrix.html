@@ -1,0 +1,24 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> rotateMatrix(<span style="color: #2b91af">int</span>[][] a]){
+    <span style="color: #008000">// this is about rotatig a square matrix, so if the lenth of row and columns are not same we will return </span>
+    <span style="color: #0000ff">if</span> (a == <span style="color: #0000ff">null</span> || a.length == 0 || a.length != a[0].length){
+        <span style="color: #0000ff">return</span>;
+    }
+    
+    <span style="color: #008000">// we olny need half of the layers as other layers will be processed automatically</span>
+    <span style="color: #0000ff">for</span> (<span style="color: #2b91af">int</span> layer = 0; layer &lt; a.length/2; layer++){
+        <span style="color: #008000">// rotate (array, start, end), this will take us to the end</span>
+        rotate(a, layer, a.length-1-layer)
+    }
+}
+
+<span style="color: #008000">// helper function shoudl beprivate and static </span>
+<span style="color: #0000ff">private</span> <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> rotate(<span style="color: #2b91af">int</span>[][] a, start, end){
+    <span style="color: #0000ff">for</span> (<span style="color: #2b91af">int</span> current = 0; start+current &lt; end; current++){
+        <span style="color: #2b91af">int</span> temp = a[start][start+current]; <span style="color: #008000">// save the top </span>
+        a[start][start+current] = a[end-current][start]; <span style="color: #008000">// left to top moveing left elemnt to top</span>
+        a[end-current][start] = a[end][end-current]; <span style="color: #008000">// bottom element to left </span>
+        a[end][end-current] = a[start+current][end]; <span style="color: #008000">// right element to bottom </span>
+        a[start+current][end] = temp; <span style="color: #008000">// top elemrnt to right</span>
+    }
+}
+</pre></div>

@@ -101,3 +101,68 @@
 2. Find subarray which sums to X
 
 ![alt text](images/prefix_sum_3.png "Title")
+
+
+**Technique 4 MAX DIFF**
+
+- The Max Diff is the maximum difference between two elements in an array, with the lesser element coming before the greater element.
+
+![alt text](images/max_diff_1.png "Title")
+![alt text](images/max_diff_2.png "Title")
+![alt text](images/max_diff_3.png "Title")
+
+
+**2D Arrays**
+
+- Rotate array by 90 degrees
+
+![alt text](images/matrix_rotate.png "Title")
+![alt text](images/matrix_rotate_1.png "Title")
+![alt text](images/matrix_rotate_2.png "Title")
+![alt text](images/matrix_rotate_3.png "Title")
+
+
+- Print array in zigzag order 
+
+![alt text](images/array_zigzag.png "Title")
+
+https://www.filepicker.io/api/file/jmoYEixvTmjury2XKtlB
+
+- Print array in spiral order
+
+![alt text](images/array_spiral.png "Title")
+
+https://www.filepicker.io/api/file/jmoYEixvTmjury2XKtlB
+
+
+**SPECIAL TRICKS**
+
+- *Check if a string is trotation of another string*
+- kaushal , shalkau is rotation of kaushal so simplay append these two and see if it substring.
+
+![alt text](images/string_1.png "Title")
+
+- *reverse words in the string*
+-  1) first reverse the entire string and 2) thn reverse the individual words (this will do it in place)
+
+![alt text](images/string_2.png "Title")
+
+- *Longest palindrome in the string*
+- abkayakcd --> longest palindrom is kayak. 
+- You need to expand throgh bith the elemnts and the middle of each letter (and keep track of longest) start form the middle
+
+![alt text](images/string_3.png "Title")
+![alt text](images/longest_palindrom_substring.png "Title")
+
+
+**BIG INTEGER ADDITION**
+
+- 100 digit number will not fit in normal int
+- simple technique of using carry result%10 and use it
+
+
+![alt text](images/big_int_1.png "Title")
+![alt text](images/big_int_2.png "Title")
+![alt text](images/big_int_3.png "Title")
+![alt text](images/bib_int_multiplication.png "Title")
+

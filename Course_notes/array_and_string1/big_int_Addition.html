@@ -1,0 +1,58 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic">// The max length of the result is the length of the larger number + 1.</span>
+    <span style="color: #008800; font-style: italic">// In basic addition, for every index ​i​,</span>
+    <span style="color: #008800; font-style: italic">// sum = a[i] + b[i] + carry</span>
+    <span style="color: #008800; font-style: italic">// carry = sum/10</span>
+    <span style="color: #008800; font-style: italic">// result[i] = sum%10</span>
+    
+    
+    <span style="color: #000080; font-weight: bold">public</span> <span style="color: #000080; font-weight: bold">static</span> <span style="color: #000080; font-weight: bold">int</span>[] add(<span style="color: #000080; font-weight: bold">int</span>[] a, <span style="color: #000080; font-weight: bold">int</span>[] b) {    
+        <span style="color: #000080; font-weight: bold">if</span> (a == <span style="color: #000080; font-weight: bold">null</span> || b == <span style="color: #000080; font-weight: bold">null</span>) {        
+            <span style="color: #000080; font-weight: bold">throw</span> <span style="color: #000080; font-weight: bold">new</span> IllegalArgumentException(<span style="color: #0000FF">&quot;Input is null&quot;</span>);    
+        }
+    
+        <span style="color: #008800; font-style: italic">// Decide which array is larger to keep it on top</span>
+        <span style="color: #000080; font-weight: bold">int</span>[] larger = a.<span style="color: #FF0000">length</span> &gt; b.<span style="color: #FF0000">length</span> ? a : b;
+        <span style="color: #000080; font-weight: bold">int</span>[] smaller = larger == a ? b : a;
+    
+        <span style="color: #008800; font-style: italic">// make smaller array as large as larger so it becomes easier for addition</span>
+        smaller = resizeWithZeroes(smaller, larger.<span style="color: #FF0000">length</span>);
+    
+        <span style="color: #008800; font-style: italic">// make a result array one size bigger than the larger for example 999 + 999 = 1998</span>
+         <span style="color: #000080; font-weight: bold">int</span>[] result = <span style="color: #000080; font-weight: bold">new</span> <span style="color: #000080; font-weight: bold">int</span>[<span style="color: #0000FF">1</span> + larger.<span style="color: #FF0000">length</span>];
+    
+         <span style="color: #000080; font-weight: bold">int</span> carry = <span style="color: #0000FF">0</span>;
+    
+         <span style="color: #008800; font-style: italic">// you can use smaller.length as well as both are of same length</span>
+         <span style="color: #000080; font-weight: bold">for</span> (<span style="color: #000080; font-weight: bold">int</span> i = larger.<span style="color: #FF0000">length</span> - <span style="color: #0000FF">1</span>; i &gt;= <span style="color: #0000FF">0</span>; i--) {
+             <span style="color: #000080; font-weight: bold">int</span> sum = larger[i] + smaller[i] + carry;
+             carry = sum / <span style="color: #0000FF">10</span>;
+             <span style="color: #008800; font-style: italic">// add it to the very end and as the result array is one larger</span>
+             result[i+<span style="color: #0000FF">1</span>] = sum % <span style="color: #0000FF">10</span>;
+         }
+         result[<span style="color: #0000FF">0</span>] = carry;
+    
+         <span style="color: #008800; font-style: italic">// ask if this rquired</span>
+         result = trimBeginningZeroes(result);
+         <span style="color: #000080; font-weight: bold">return</span> result;
+    }
+    
+    <span style="color: #008800; font-style: italic">//helper function</span>
+    <span style="color: #000080; font-weight: bold">public</span> <span style="color: #000080; font-weight: bold">static</span> <span style="color: #000080; font-weight: bold">int</span>[] resizeWithZeroes(<span style="color: #000080; font-weight: bold">int</span>[] a, <span style="color: #000080; font-weight: bold">int</span> size) {    
+    
+        <span style="color: #000080; font-weight: bold">if</span> (size &lt; a.<span style="color: #FF0000">length</span>)        
+            <span style="color: #000080; font-weight: bold">throw</span> <span style="color: #000080; font-weight: bold">new</span> IllegalArgumentException(<span style="color: #0000FF">&quot;Can only expand size&quot;</span>);
+    
+        <span style="color: #008800; font-style: italic">// this will assign the array to bigger arra</span>
+        <span style="color: #000080; font-weight: bold">int</span>[] result = <span style="color: #000080; font-weight: bold">new</span> <span style="color: #000080; font-weight: bold">int</span>[size];
+        <span style="color: #000080; font-weight: bold">int</span> aIndex = a.<span style="color: #FF0000">length</span> - <span style="color: #0000FF">1</span>, resultIndex = result.<span style="color: #FF0000">length</span> - <span style="color: #0000FF">1</span>;
+    
+        <span style="color: #000080; font-weight: bold">while</span> (aIndex &gt;= <span style="color: #0000FF">0</span>) {        
+            result[resultIndex] = a[aIndex];        
+            resultIndex--;        
+            aIndex--;    
+        }    
+        
+        <span style="color: #000080; font-weight: bold">return</span> result;
+    }
+    </pre></div>
+    

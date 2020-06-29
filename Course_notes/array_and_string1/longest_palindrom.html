@@ -1,0 +1,52 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000080; font-weight: bold">public</span> <span style="color: #000080; font-weight: bold">static</span> Pair&lt;Integer&gt; longestPalindrome(String a) {    
+    <span style="color: #000080; font-weight: bold">if</span> (a == <span style="color: #000080; font-weight: bold">null</span> || a.<span style="color: #FF0000">isEmpty</span>()) {        
+        <span style="color: #000080; font-weight: bold">return</span> <span style="color: #000080; font-weight: bold">null</span>;    
+    }    
+    
+    <span style="color: #000080; font-weight: bold">char</span>[] ch = a.<span style="color: #FF0000">toCharArray</span>();    
+    <span style="color: #000080; font-weight: bold">int</span> longest = <span style="color: #0000FF">1</span>;    
+    
+    Pair&lt;Integer&gt; result = <span style="color: #000080; font-weight: bold">new</span> Pair&lt;Integer&gt;(<span style="color: #0000FF">0</span>,<span style="color: #0000FF">0</span>);
+
+    <span style="color: #008800; font-style: italic">//we expand from each charachter    </span>
+    <span style="color: #008800; font-style: italic">// Odd    </span>
+    <span style="color: #000080; font-weight: bold">for</span> (<span style="color: #000080; font-weight: bold">int</span> i = <span style="color: #0000FF">0</span>; i &lt; ch.<span style="color: #FF0000">length</span>; i++) {        
+        <span style="color: #000080; font-weight: bold">int</span> offset = <span style="color: #0000FF">0</span>;     
+
+        <span style="color: #008800; font-style: italic">// it should be in valid range, if yes compare the two elements (expanding process) offset maintains how far we went</span>
+        <span style="color: #000080; font-weight: bold">while</span> (isValidIndex(ch, i-<span style="color: #0000FF">1</span>-offset) &amp;&amp; isValidIndex(ch, i+<span style="color: #0000FF">1</span>+offset) &amp;&amp; ch[i-<span style="color: #0000FF">1</span>-offset] == ch[i+<span style="color: #0000FF">1</span>+offset]) {            
+            offset++;        
+        }        
+        
+        <span style="color: #008800; font-style: italic">// if you multiply offset by two you get the longest</span>
+        <span style="color: #000080; font-weight: bold">int</span> longestAtI = offset*<span style="color: #0000FF">2</span> + <span style="color: #0000FF">1</span>;        
+        <span style="color: #000080; font-weight: bold">if</span> (longestAtI &gt; longest) {            
+            longest = longestAtI;
+            result = <span style="color: #000080; font-weight: bold">new</span> Pair&lt;Integer&gt;(i-offset, i+offset);
+        }
+    }
+
+    <span style="color: #008800; font-style: italic">// Even    </span>
+    <span style="color: #000080; font-weight: bold">for</span> (<span style="color: #000080; font-weight: bold">int</span> i = <span style="color: #0000FF">0</span>; i &lt; ch.<span style="color: #FF0000">length</span>; i++) {        
+        <span style="color: #000080; font-weight: bold">int</span> offset = <span style="color: #0000FF">0</span>; 
+
+        <span style="color: #000080; font-weight: bold">while</span> (isValidIndex(ch, i-offset) &amp;&amp; isValidIndex(ch, i+<span style="color: #0000FF">1</span>+offset) &amp;&amp; ch[i-offset] == ch[i+<span style="color: #0000FF">1</span>+offset]) {            
+            offset++;        
+        }        
+        
+        <span style="color: #000080; font-weight: bold">int</span> longestAtI = offset*<span style="color: #0000FF">2</span>;        
+        <span style="color: #000080; font-weight: bold">if</span> (longestAtI &gt; longest) {            
+            longest = longestAtI;            
+            result = <span style="color: #000080; font-weight: bold">new</span> Pair&lt;Integer&gt;(i-offset+<span style="color: #0000FF">1</span>, i+offset);        
+            }    
+        }    
+        
+        <span style="color: #000080; font-weight: bold">return</span> result;
+}
+
+<span style="color: #008800; font-style: italic">//helper to check if the index is valid</span>
+
+<span style="color: #000080; font-weight: bold">private</span> <span style="color: #000080; font-weight: bold">static</span> <span style="color: #000080; font-weight: bold">boolean</span> isValidIndex(<span style="color: #000080; font-weight: bold">char</span>[] a, <span style="color: #000080; font-weight: bold">int</span> i) {    
+    <span style="color: #000080; font-weight: bold">return</span> i &gt;= <span style="color: #0000FF">0</span> &amp;&amp; i &lt; a.<span style="color: #FF0000">length</span>;
+}
+</pre></div>

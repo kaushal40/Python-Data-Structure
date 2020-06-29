@@ -1,0 +1,36 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #000080; font-weight: bold">public</span> <span style="color: #000080; font-weight: bold">static</span> <span style="color: #000080; font-weight: bold">void</span> printSpiral(<span style="color: #000080; font-weight: bold">int</span>[][] a){
+    <span style="color: #000080; font-weight: bold">if</span> (a == <span style="color: #000080; font-weight: bold">null</span> || a.<span style="color: #FF0000">length</span> == <span style="color: #0000FF">0</span>)
+        <span style="color: #000080; font-weight: bold">return</span>;
+
+    <span style="color: #008800; font-style: italic">// taking outside layer by passing last row and last column</span>
+    <span style="color: #000080; font-weight: bold">for</span> (<span style="color: #000080; font-weight: bold">int</span> layer = <span style="color: #0000FF">0</span>; layer &lt;= a.<span style="color: #FF0000">length</span>/<span style="color: #0000FF">2</span> ; layer++) {
+        printLayer(a, layer, a[<span style="color: #0000FF">0</span>].<span style="color: #FF0000">length</span>-<span style="color: #0000FF">1</span>-layer, a.<span style="color: #FF0000">length</span>-<span style="color: #0000FF">1</span>-layer);
+    }
+}
+
+<span style="color: #000080; font-weight: bold">private</span> <span style="color: #000080; font-weight: bold">static</span> <span style="color: #000080; font-weight: bold">void</span> printLayer(<span style="color: #000080; font-weight: bold">int</span>[][] a, <span style="color: #000080; font-weight: bold">int</span> layer, <span style="color: #000080; font-weight: bold">int</span> lastColumn, <span style="color: #000080; font-weight: bold">int</span> lastRow) {
+    <span style="color: #008800; font-style: italic">// single element in layer, print separately because other cases won&#39;t handle it</span>
+    <span style="color: #000080; font-weight: bold">if</span> (lastColumn == layer &amp;&amp; lastRow == layer)
+        System.<span style="color: #FF0000">out</span>.<span style="color: #FF0000">print</span>(a[layer][layer]);
+    
+    <span style="color: #000080; font-weight: bold">for</span>(<span style="color: #000080; font-weight: bold">int</span> current = layer; current &lt; lastColumn; current++) { 
+        <span style="color: #008800; font-style: italic">// top row        </span>
+        System.<span style="color: #FF0000">out</span>.<span style="color: #FF0000">print</span>(a[layer][current]);    
+    }
+
+    <span style="color: #000080; font-weight: bold">for</span>(<span style="color: #000080; font-weight: bold">int</span> current = layer; current &lt; lastRow; current++) {
+        <span style="color: #008800; font-style: italic">// right column</span>
+        System.<span style="color: #FF0000">out</span>.<span style="color: #FF0000">print</span>(a[current][lastColumn]);
+    }
+
+    <span style="color: #000080; font-weight: bold">for</span>(<span style="color: #000080; font-weight: bold">int</span> current = lastColumn; current &gt; layer; current--) { 
+        <span style="color: #008800; font-style: italic">// bottom row        </span>
+        System.<span style="color: #FF0000">out</span>.<span style="color: #FF0000">print</span>(a[lastRow][current]);    
+    }
+
+    <span style="color: #000080; font-weight: bold">for</span>(<span style="color: #000080; font-weight: bold">int</span> current = lastRow; current &gt; layer; current--) {    
+        <span style="color: #008800; font-style: italic">// left column        </span>
+        System.<span style="color: #FF0000">out</span>.<span style="color: #FF0000">print</span>(a[current][layer]);    
+    }
+}
+</pre></div>
