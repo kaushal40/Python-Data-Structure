@@ -1,0 +1,69 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-style: italic">// Questions to Clarify:</span>
+    <span style="color: #008800; font-style: italic">// Q. If T occurs multiple times in A, do you want just the first index?</span>
+    <span style="color: #008800; font-style: italic">// A. Yes </span>
+    <span style="color: #008800; font-style: italic">// Q. If T doesn&#39;t exist in A, can I return -1?</span>
+    <span style="color: #008800; font-style: italic">// A. Yes</span>
+    <span style="color: #008800; font-style: italic">// Q. If T is empty, does that mean it exists in A?</span>
+    <span style="color: #008800; font-style: italic">// A. Yes, empty strings exist in any non-null string.</span>
+    <span style="color: #008800; font-style: italic">// Q. What if S or T are null?</span>
+    <span style="color: #008800; font-style: italic">// A. Throw a null pointer exception.</span>
+    
+    
+    <span style="color: #008800; font-style: italic">// solution will consider sliding window of size T</span>
+    <span style="color: #008800; font-style: italic">// calculate hashcode for the window and iterate throgh string if hashcode matches than string dfound</span>
+    
+    
+    <span style="color: #008800; font-style: italic">// hash(T:&quot;ello&quot;) =&gt; &#39;e&#39;.x​3​ + &#39;l&#39;.x​2​ + &#39;l&#39;.x + &#39;o&#39;</span>
+    <span style="color: #008800; font-style: italic">// W =&gt; &#39;h&#39;.x​3​ + &#39;e&#39;.x​2​ + &#39;l&#39;.x + &#39;l&#39; (first step)</span>
+    <span style="color: #008800; font-style: italic">// W =&gt; ​[(​&#39;h&#39;.x​3​ + &#39;e&#39;.x​2​ + &#39;l&#39;.x + &#39;l&#39;) -​ &#39;h&#39;.x​3​].x​ + &#39;o&#39;  =&gt; &#39;e&#39;.x​3​ + &#39;l&#39;.x​2​ + &#39;l&#39;.x + &#39;o&#39;   (second step)</span>
+    
+    
+    <span style="color: #008800; font-style: italic">// Time Complexity: O(n)</span>
+    <span style="color: #008800; font-style: italic">// Space Complexity: O(1)</span>
+    
+    <span style="color: #000080; font-weight: bold">public</span> <span style="color: #000080; font-weight: bold">static</span> <span style="color: #000080; font-weight: bold">int</span> search(String str, String target) {
+        <span style="color: #008800; font-style: italic">//base case</span>
+        <span style="color: #000080; font-weight: bold">if</span> (str == <span style="color: #000080; font-weight: bold">null</span> || target == <span style="color: #000080; font-weight: bold">null</span>)
+            <span style="color: #000080; font-weight: bold">throw</span> <span style="color: #000080; font-weight: bold">new</span> NullPointerException();
+        
+        <span style="color: #008800; font-style: italic">// if target is zero than found</span>
+        <span style="color: #000080; font-weight: bold">if</span> (target.<span style="color: #FF0000">isEmpty</span>())
+            <span style="color: #000080; font-weight: bold">return</span> <span style="color: #0000FF">0</span>;
+    
+        <span style="color: #008800; font-style: italic">// if target is greater thn actaul </span>
+        <span style="color: #000080; font-weight: bold">if</span> (target.<span style="color: #FF0000">length</span>() &gt; str.<span style="color: #FF0000">length</span>())        
+            <span style="color: #000080; font-weight: bold">return</span> -<span style="color: #0000FF">1</span>;
+    
+        <span style="color: #000080; font-weight: bold">int</span> x = <span style="color: #0000FF">53</span>; <span style="color: #008800; font-style: italic">// a prime number</span>
+    
+        <span style="color: #008800; font-style: italic">// hash of target</span>
+        <span style="color: #000080; font-weight: bold">int</span> hashT = <span style="color: #0000FF">0</span>;
+    
+        <span style="color: #008800; font-style: italic">// running hash for window</span>
+        <span style="color: #000080; font-weight: bold">int</span> hash = <span style="color: #0000FF">0</span>;
+        
+        <span style="color: #000080; font-weight: bold">for</span> (<span style="color: #000080; font-weight: bold">int</span> i = <span style="color: #0000FF">0</span>; i &lt; target.<span style="color: #FF0000">length</span>(); i++) {
+            hashT = hashT * x + target.<span style="color: #FF0000">charAt</span>(i);
+            <span style="color: #008800; font-style: italic">// for efficeiency calculate the hash of first lenth from string tohgathet</span>
+            hash = hash * x + str.<span style="color: #FF0000">charAt</span>(i);
+        }
+    
+        <span style="color: #008800; font-style: italic">// found match in first substring    </span>
+        <span style="color: #000080; font-weight: bold">if</span> (hashT == hash &amp;&amp; target.<span style="color: #FF0000">equals</span>(str.<span style="color: #FF0000">substring</span>(<span style="color: #0000FF">0</span>, target.<span style="color: #FF0000">length</span>())))        
+            <span style="color: #000080; font-weight: bold">return</span> <span style="color: #0000FF">0</span>;
+    
+        <span style="color: #008800; font-style: italic">// now do the running search for hash comparison</span>
+        <span style="color: #000080; font-weight: bold">for</span> (<span style="color: #000080; font-weight: bold">int</span> i = target.<span style="color: #FF0000">length</span>(); i &lt; str.<span style="color: #FF0000">length</span>(); i++) {  
+            <span style="color: #008800; font-style: italic">// removal charachter      </span>
+            <span style="color: #000080; font-weight: bold">int</span> toRemove = str.<span style="color: #FF0000">charAt</span>(i - target.<span style="color: #FF0000">length</span>());
+            <span style="color: #008800; font-style: italic">// multiply by X and add        </span>
+            hash = ((hash - toRemove * xPow) * x + str.<span style="color: #FF0000">charAt</span>(i));        
+            <span style="color: #000080; font-weight: bold">if</span> (hash == hashT  &amp;&amp; target.<span style="color: #FF0000">equals</span>(str.<span style="color: #FF0000">substring</span>(i - target.<span style="color: #FF0000">length</span>() + <span style="color: #0000FF">1</span>, i + <span style="color: #0000FF">1</span>))) 
+            {            
+                <span style="color: #000080; font-weight: bold">return</span> i - target.<span style="color: #FF0000">length</span>() + <span style="color: #0000FF">1</span>;        
+            }    
+        }    
+        <span style="color: #000080; font-weight: bold">return</span> -<span style="color: #0000FF">1</span>; <span style="color: #008800; font-style: italic">// not found</span>
+    }
+    </pre></div>
+    
