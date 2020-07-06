@@ -1,0 +1,15 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> Node <span style="color: #0000FF">findMedian</span><span style="color: #666666">(</span>Node head<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>head <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">){</span>  
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>        
+    Node fast <span style="color: #666666">=</span> head<span style="color: #666666">,</span> slow <span style="color: #666666">=</span> head<span style="color: #666666">;</span>    
+    <span style="color: #008000; font-weight: bold">while</span><span style="color: #666666">(</span>fast<span style="color: #666666">.</span><span style="color: #7D9029">next</span> <span style="color: #666666">!=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+        fast <span style="color: #666666">=</span> fast<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">;</span>        
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>fast<span style="color: #666666">.</span><span style="color: #7D9029">next</span> <span style="color: #666666">!=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+            fast <span style="color: #666666">=</span> fast<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">;</span>            
+            slow <span style="color: #666666">=</span> slow<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">;</span>        
+        <span style="color: #666666">}</span>    
+    <span style="color: #666666">}</span>    
+    <span style="color: #008000; font-weight: bold">return</span> slow<span style="color: #666666">;</span>
+<span style="color: #666666">}</span>
+</pre></div>

@@ -1,0 +1,45 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Queue</span><span style="color: #666666">{</span>
+    <span style="color: #B00040">int</span> a<span style="color: #666666">[];</span>
+
+    <span style="color: #B00040">int</span> length<span style="color: #666666">;</span>
+    <span style="color: #B00040">int</span> front<span style="color: #666666">;</span>
+    <span style="color: #B00040">int</span> back<span style="color: #666666">;</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">Queue</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> size<span style="color: #666666">){</span>
+        a <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">int</span><span style="color: #666666">[</span>size<span style="color: #666666">];</span>
+        front <span style="color: #666666">=</span> <span style="color: #666666">0;</span>
+        back <span style="color: #666666">=</span> <span style="color: #666666">0;</span>
+        length <span style="color: #666666">=</span> <span style="color: #666666">0;</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">add</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> item<span style="color: #666666">)</span> <span style="color: #008000; font-weight: bold">throw</span> QueueFullException <span style="color: #666666">{</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>length <span style="color: #666666">==</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">){</span>
+            <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">QueueFullException</span><span style="color: #666666">();</span>
+        <span style="color: #666666">}</span>
+        a<span style="color: #666666">[</span>back<span style="color: #666666">]</span> <span style="color: #666666">=</span> item<span style="color: #666666">;</span>
+        <span style="color: #408080; font-style: italic">// this is very important circling property </span>
+        back <span style="color: #666666">=</span> <span style="color: #666666">(</span>back <span style="color: #666666">+</span> <span style="color: #666666">1)</span> <span style="color: #666666">%</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">;</span>
+        length<span style="color: #666666">++;</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">remove</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> QueueEmptyException <span style="color: #666666">{</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>length <span style="color: #666666">==</span> <span style="color: #666666">0)</span>            
+            <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">QueueEmptyException</span><span style="color: #666666">();</span>
+        <span style="color: #B00040">int</span> result <span style="color: #666666">=</span> a<span style="color: #666666">[</span>front<span style="color: #666666">];</span>
+        front <span style="color: #666666">=</span> <span style="color: #666666">(</span>front <span style="color: #666666">+</span> <span style="color: #666666">1)</span> <span style="color: #666666">%</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">;</span>
+        length<span style="color: #666666">--;</span>
+        <span style="color: #008000; font-weight: bold">return</span> result<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+
+<span style="color: #408080; font-style: italic">// helper code</span>
+<span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">QueueFullException</span> <span style="color: #008000; font-weight: bold">extends</span> Exception <span style="color: #666666">{</span>    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">QueueFullException</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>    
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+
+<span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">QueueEmptyException</span> <span style="color: #008000; font-weight: bold">extends</span> Exception <span style="color: #666666">{</span>    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">QueueEmptyException</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>    
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>

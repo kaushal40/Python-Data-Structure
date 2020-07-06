@@ -1,0 +1,8 @@
+Bibin Rajan
+Created a distributed scalable systems to collect, clean and analyze data from multiple sources using a suite of AWS resources (SQS, EC2, RDS, Dynamo, S3, Lambda, Auto-scaling)
+
+Information extraction using extractive text summarization techniques to create company descriptions from unstructured text
+• Built an address extraction and tagging system from unstructured text to find company locations
+
+Architect and engineer scalable data pipelines for storing, retrieving and extracting key data points from company websites
+

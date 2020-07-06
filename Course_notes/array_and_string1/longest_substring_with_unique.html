@@ -1,0 +1,50 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// w h ​a t w h y​ w h e r e        </span>
+    <span style="color: #408080; font-style: italic">//     |       |</span>
+
+    <span style="color: #408080; font-style: italic">// exapand the window</span>
+    
+    <span style="color: #408080; font-style: italic">// w h ​a t w h y w​ h e r e        </span>
+    <span style="color: #408080; font-style: italic">//     |         |</span>
+    
+    <span style="color: #408080; font-style: italic">// now as w is alread y there we shrink the window to (previous encounter of W + 1)</span>
+    <span style="color: #408080; font-style: italic">// w h a t w​ h y w​ h e r e</span>
+    <span style="color: #408080; font-style: italic">//           |   |</span>
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> Pair<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> <span style="color: #0000FF">allUnique</span><span style="color: #666666">(</span>String input<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>input <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span> <span style="color: #666666">||</span> input<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #408080; font-style: italic">// to store the characheter and index</span>
+        HashMap<span style="color: #666666">&lt;</span>Character<span style="color: #666666">,</span> Integer<span style="color: #666666">&gt;</span> map <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HashMap<span style="color: #666666">&lt;&gt;();</span>
+    
+        <span style="color: #408080; font-style: italic">// to maintian the largest window</span>
+        Pair<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> result <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> Pair<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;(0,</span> <span style="color: #666666">0);</span>    
+        <span style="color: #B00040">int</span> start <span style="color: #666666">=</span> <span style="color: #666666">0,</span> end <span style="color: #666666">=</span> <span style="color: #666666">0,</span> longest <span style="color: #666666">=</span> <span style="color: #666666">1;</span>    
+        map<span style="color: #666666">.</span><span style="color: #7D9029">put</span><span style="color: #666666">(</span>input<span style="color: #666666">.</span><span style="color: #7D9029">charAt</span><span style="color: #666666">(0),</span> <span style="color: #666666">0);</span>    
+        
+        <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>end <span style="color: #666666">&lt;</span> input<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">()</span> <span style="color: #666666">-</span> <span style="color: #666666">1)</span> <span style="color: #666666">{</span>        
+            <span style="color: #408080; font-style: italic">// expand end pointer        </span>
+            end<span style="color: #666666">++;</span>        
+            <span style="color: #B00040">char</span> toAdd <span style="color: #666666">=</span> input<span style="color: #666666">.</span><span style="color: #7D9029">charAt</span><span style="color: #666666">(</span>end<span style="color: #666666">);</span> 
+    
+            <span style="color: #408080; font-style: italic">// if char is in map shrink the wndow       </span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>map<span style="color: #666666">.</span><span style="color: #7D9029">containsKey</span><span style="color: #666666">(</span>toAdd<span style="color: #666666">)</span> <span style="color: #666666">&amp;&amp;</span> map<span style="color: #666666">.</span><span style="color: #7D9029">get</span><span style="color: #666666">(</span>toAdd<span style="color: #666666">)</span> <span style="color: #666666">&gt;=</span> start<span style="color: #666666">)</span> 
+            <span style="color: #666666">{</span>            
+                start <span style="color: #666666">=</span> map<span style="color: #666666">.</span><span style="color: #7D9029">get</span><span style="color: #666666">(</span>toAdd<span style="color: #666666">)</span> <span style="color: #666666">+</span> <span style="color: #666666">1;</span>        
+            <span style="color: #666666">}</span>        
+            
+            map<span style="color: #666666">.</span><span style="color: #7D9029">put</span><span style="color: #666666">(</span>toAdd<span style="color: #666666">,</span>  end<span style="color: #666666">);</span>    
+    
+            <span style="color: #408080; font-style: italic">// update result for whoever is longest      </span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>end <span style="color: #666666">-</span> start <span style="color: #666666">+</span> <span style="color: #666666">1</span> <span style="color: #666666">&gt;</span> longest<span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+                longest <span style="color: #666666">=</span> end <span style="color: #666666">-</span> start <span style="color: #666666">+</span> <span style="color: #666666">1;</span>            
+                result<span style="color: #666666">.</span><span style="color: #7D9029">setFirst</span><span style="color: #666666">(</span>start<span style="color: #666666">);</span>            
+                result<span style="color: #666666">.</span><span style="color: #7D9029">setSecond</span><span style="color: #666666">(</span>end<span style="color: #666666">);</span>        
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>    
+        <span style="color: #008000; font-weight: bold">return</span> result<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

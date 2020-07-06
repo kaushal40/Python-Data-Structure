@@ -1,0 +1,78 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// Word Ladder Problem: You are given 2 words A and B, both of the same length. Your task is totransform one word  to another - changing only one letter at a time. </span>
+    <span style="color: #408080; font-style: italic">// Each intermediate wordshould be a valid word in the dictionary. Print out the length of the path.</span>
+
+    <span style="color: #408080; font-style: italic">// Q. Can we assume dictionary is provided? </span>
+    <span style="color: #408080; font-style: italic">// A. Yes, you can assume that.</span>
+    <span style="color: #408080; font-style: italic">// Q. What to return if not found?</span>
+    <span style="color: #408080; font-style: italic">// A. Return -1</span>
+    <span style="color: #408080; font-style: italic">// Q. Can we assume all lowercase alphabets?</span>
+    <span style="color: #408080; font-style: italic">// A. Yes</span>
+    <span style="color: #408080; font-style: italic">// Q. What is the word and the result are the same string?</span>
+    <span style="color: #408080; font-style: italic">// A. Return 0</span>
+    
+    <span style="color: #408080; font-style: italic">// This problem can be modeled as a graph. Each word is a node, and all its adjacent words are neighbors. </span>
+    <span style="color: #408080; font-style: italic">// We want to find the shortest path to a destination node</span>
+    
+    <span style="color: #408080; font-style: italic">// we need to return the ​length​ of the shortest path.To do this, when we visit a node, we need to store it&#39;s level. </span>
+    <span style="color: #408080; font-style: italic">// It&#39;s level is ​1 + levelof its parent node​</span>
+    
+    
+    <span style="color: #408080; font-style: italic">// Test Cases:</span>
+    <span style="color: #408080; font-style: italic">// Edge Cases: empty strings, strings are different length</span>
+    <span style="color: #408080; font-style: italic">// Base Cases: single character, both strings are same</span>
+    <span style="color: #408080; font-style: italic">// Regular Cases: valid path exists, no path exists</span>
+    
+    <span style="color: #408080; font-style: italic">// Time Complexity and space: O(26^​N​), because in the worst case, you will go through every word of size n.</span>
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">wordLadder</span><span style="color: #666666">(</span>String start<span style="color: #666666">,</span> String end<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        
+        Queue<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> q <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> LinkedList<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;();</span>    
+        <span style="color: #408080; font-style: italic">// will be used to store the level of the current node, so that can be used to calcualte the neighbours level by current + 1</span>
+        HashMap<span style="color: #666666">&lt;</span>String<span style="color: #666666">,</span> Integer<span style="color: #666666">&gt;</span> visitedWords <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HashMap<span style="color: #666666">&lt;&gt;();</span><span style="border: 1px solid #FF0000">​</span> <span style="color: #408080; font-style: italic">//[word -&gt; depth]    </span>
+        q<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>start<span style="color: #666666">);</span>    
+        
+        visitedWords<span style="color: #666666">.</span><span style="color: #7D9029">put</span><span style="color: #666666">(</span>start<span style="color: #666666">,</span> <span style="color: #666666">0);</span> <span style="color: #408080; font-style: italic">// depth = 0 </span>
+    
+        <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(!</span>q<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>        
+            String current <span style="color: #666666">=</span> q<span style="color: #666666">.</span><span style="color: #7D9029">remove</span><span style="color: #666666">();</span>        
+            
+            <span style="color: #408080; font-style: italic">// if current word is same as actual word return the level</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>current<span style="color: #666666">.</span><span style="color: #7D9029">equals</span><span style="color: #666666">(</span>end<span style="color: #666666">))</span>            
+                <span style="color: #008000; font-weight: bold">return</span> visitedWords<span style="color: #666666">.</span><span style="color: #7D9029">get</span><span style="color: #666666">(</span>current<span style="color: #666666">);</span>        
+                
+            List<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> neighbors <span style="color: #666666">=</span> getNeighbors<span style="color: #666666">(</span>current<span style="color: #666666">);</span>        
+            <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span>String <span style="color: #A0A000">neighbor:</span> neighbors<span style="color: #666666">)</span> <span style="color: #666666">{</span>           
+                 <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(!</span>visitedWords<span style="color: #666666">.</span><span style="color: #7D9029">containsKey</span><span style="color: #666666">(</span>neighbor<span style="color: #666666">))</span> <span style="color: #666666">{</span>                
+                     q<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>neighbor<span style="color: #666666">);</span>                
+                     visitedWords<span style="color: #666666">.</span><span style="color: #7D9029">put</span><span style="color: #666666">(</span>neighbor<span style="color: #666666">,</span> visitedWords<span style="color: #666666">.</span><span style="color: #7D9029">get</span><span style="color: #666666">(</span>current<span style="color: #666666">)</span> <span style="color: #666666">+</span> <span style="color: #666666">1);</span>            
+                <span style="color: #666666">}</span>        
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>    
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-1;</span>
+    <span style="color: #666666">}</span>
+    
+    
+    <span style="color: #408080; font-style: italic">// get the neighbours of word from dictionary </span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> List<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> <span style="color: #0000FF">getNeighbors</span><span style="color: #666666">(</span>String word<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        List<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> result <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> ArrayList<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;();</span>    
+        
+        <span style="color: #B00040">char</span><span style="color: #666666">[]</span> wordArray <span style="color: #666666">=</span> word<span style="color: #666666">.</span><span style="color: #7D9029">toCharArray</span><span style="color: #666666">();</span>    
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0;</span> i <span style="color: #666666">&lt;</span> wordArray<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">;</span> i<span style="color: #666666">++)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">char</span> ch <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;a&#39;</span><span style="color: #666666">;</span> ch <span style="color: #666666">&lt;=</span> <span style="color: #BA2121">&#39;z&#39;</span><span style="color: #666666">;</span> ch<span style="color: #666666">++)</span> <span style="color: #666666">{</span>   
+                <span style="color: #408080; font-style: italic">// all one letter change words         </span>
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>word<span style="color: #666666">.</span><span style="color: #7D9029">charAt</span><span style="color: #666666">(</span>i<span style="color: #666666">)</span> <span style="color: #666666">!=</span> ch<span style="color: #666666">)</span> <span style="color: #666666">{</span>                
+                    wordArray<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">=</span> ch<span style="color: #666666">;</span>                
+                    String candidate <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> String<span style="color: #666666">(</span>wordArray<span style="color: #666666">);</span>                
+                    <span style="color: #008000; font-weight: bold">if</span><span style="color: #666666">(</span>Dictionary<span style="color: #666666">.</span><span style="color: #7D9029">hasWord</span><span style="color: #666666">(</span>candidate<span style="color: #666666">))</span> <span style="color: #666666">{</span>                    
+                        result<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>candidate<span style="color: #666666">);</span>                
+                    <span style="color: #666666">}</span>            
+                <span style="color: #666666">}</span>        
+            <span style="color: #666666">}</span>
+            wordArray<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">=</span> word<span style="color: #666666">.</span><span style="color: #7D9029">charAt</span><span style="color: #666666">(</span>i<span style="color: #666666">);</span>    
+        <span style="color: #666666">}</span>    
+        <span style="color: #008000; font-weight: bold">return</span> result<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

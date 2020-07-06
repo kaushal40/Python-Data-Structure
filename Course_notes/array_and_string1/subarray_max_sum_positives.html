@@ -1,0 +1,39 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">//sliding window </span>
+
+    <span style="color: #408080; font-style: italic">//If the sum is less than ​X​, we advance ​end​ by 1 and add ​a[end]​ to the sum. If sum is greater than ​X​,we advance start by 1 and subtract ​a[start]​ from the sum. </span>
+    <span style="color: #408080; font-style: italic">//Keep in mind ​start​ is always behind or equalto ​end​.</span>
+    
+    <span style="color: #408080; font-style: italic">// no shrinking from left</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> Pair<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> <span style="color: #0000FF">subarraySum</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">,</span> <span style="color: #B00040">int</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span> <span style="color: #666666">||</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">==</span> <span style="color: #666666">0)</span>        
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>    
+            
+        <span style="color: #B00040">int</span> start <span style="color: #666666">=</span> <span style="color: #666666">0,</span> end <span style="color: #666666">=</span> <span style="color: #666666">0,</span> sum <span style="color: #666666">=</span> a<span style="color: #666666">[0];</span>    
+        <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>start <span style="color: #666666">&lt;</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>start <span style="color: #666666">&gt;</span> end<span style="color: #666666">)</span> <span style="color: #666666">{</span> 
+                <span style="color: #408080; font-style: italic">// start inched forward, bring end back to start            </span>
+                end <span style="color: #666666">=</span> start<span style="color: #666666">;</span>            
+                sum <span style="color: #666666">=</span> a<span style="color: #666666">[</span>start<span style="color: #666666">];</span>        
+            <span style="color: #666666">}</span>        
+            
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>sum <span style="color: #666666">&lt;</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span> 
+                <span style="color: #408080; font-style: italic">// expand to right            </span>
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>end <span style="color: #666666">==</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">-</span> <span style="color: #666666">1)</span>                
+                    <span style="color: #008000; font-weight: bold">break</span><span style="color: #666666">;</span> <span style="color: #408080; font-style: italic">// reached end, cannot expand further            </span>
+                end<span style="color: #666666">++;</span>            
+                sum <span style="color: #666666">=</span> sum <span style="color: #666666">+</span> a<span style="color: #666666">[</span>end<span style="color: #666666">];</span>        
+            <span style="color: #666666">}</span> 
+            
+            <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> <span style="color: #666666">(</span>sum <span style="color: #666666">&gt;</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span> 
+                <span style="color: #408080; font-style: italic">// contract from left            </span>
+                sum <span style="color: #666666">=</span> sum <span style="color: #666666">-</span> a<span style="color: #666666">[</span>start<span style="color: #666666">];</span>            
+                start<span style="color: #666666">++;</span>        
+            <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>            
+                <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">new</span> Pair<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;(</span>start<span style="color: #666666">,</span> end<span style="color: #666666">);</span>        
+            <span style="color: #666666">}</span>   
+        <span style="color: #666666">}</span>    
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

@@ -1,0 +1,44 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// Fibonacci with sample recursion</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">fibonacci</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> n<span style="color: #666666">){</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>n <span style="color: #666666">==</span> <span style="color: #666666">1</span> <span style="color: #666666">||</span> n <span style="color: #666666">==</span> <span style="color: #666666">2){</span>
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">1;</span>
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #0000FF">fibonacci</span><span style="color: #666666">(</span>n <span style="color: #666666">-</span> <span style="color: #666666">1)</span> <span style="color: #666666">+</span> fibonacci<span style="color: #666666">(</span>n <span style="color: #666666">-</span> <span style="color: #666666">2);</span> 
+    <span style="color: #666666">}</span>
+    
+    
+    <span style="color: #408080; font-style: italic">// Fibonnaci with recursion and memoization (top-down approach)</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">fibonacciWithMemo</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> n<span style="color: #666666">,</span> HashMap<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">,</span> Integer<span style="color: #666666">&gt;</span> map<span style="color: #666666">){</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>n <span style="color: #666666">==</span> <span style="color: #666666">1</span> <span style="color: #666666">||</span> n <span style="color: #666666">==</span> <span style="color: #666666">2){</span>
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">1;</span>
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #008000; font-weight: bold">if</span> map<span style="color: #666666">.</span><span style="color: #7D9029">containsKey</span><span style="color: #666666">(</span>n<span style="color: #666666">)</span>
+            <span style="color: #008000; font-weight: bold">return</span> map<span style="color: #666666">.</span><span style="color: #7D9029">get</span><span style="color: #666666">(</span>n<span style="color: #666666">);</span>
+    
+        <span style="color: #B00040">int</span> result <span style="color: #666666">=</span> fibonacci<span style="color: #666666">(</span>n <span style="color: #666666">-</span> <span style="color: #666666">1)</span> <span style="color: #666666">+</span> fibonacci<span style="color: #666666">(</span>n <span style="color: #666666">-</span> <span style="color: #666666">2);</span>
+        map<span style="color: #666666">.</span><span style="color: #7D9029">put</span><span style="color: #666666">(</span>n<span style="color: #666666">,</span> result<span style="color: #666666">)</span>
+        <span style="color: #008000; font-weight: bold">return</span> n<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    
+    
+    <span style="color: #408080; font-style: italic">// Fibonacci with DP tabulation (bottum -up approach)</span>
+    <span style="color: #408080; font-style: italic">// in this peroblem we just need last two values so we only save two values at a time</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">fibonacci</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> n<span style="color: #666666">){</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>n <span style="color: #666666">&lt;</span> <span style="color: #666666">1){</span>
+            <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">IllegalArgumentException</span><span style="color: #666666">();</span>
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #B00040">int</span> nminus1element <span style="color: #666666">=</span> <span style="color: #666666">1,</span> nminus2element <span style="color: #666666">=</span> <span style="color: #666666">1,</span> nth <span style="color: #666666">=</span> <span style="color: #666666">1;</span>
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> i <span style="color: #666666">=3:</span> i <span style="color: #666666">&lt;=</span>n<span style="color: #666666">;</span> i<span style="color: #666666">++){</span>
+            <span style="color: #408080; font-style: italic">// finding current element is just as easy as summing last two elements</span>
+            nth <span style="color: #666666">=</span>  nminus1element <span style="color: #666666">+</span> nminus2element<span style="color: #666666">;</span>
+            <span style="color: #408080; font-style: italic">// update previous elements</span>
+            nMinus2 <span style="color: #666666">=</span> nMinus1<span style="color: #666666">;</span>
+            nMinus1 <span style="color: #666666">=</span> nth<span style="color: #666666">;</span> 
+        <span style="color: #666666">}</span>
+        <span style="color: #008000; font-weight: bold">return</span> nth<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

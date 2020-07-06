@@ -1,0 +1,39 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">LinkedList</span> <span style="color: #666666">{</span>
+    Node head<span style="color: #666666">;</span>
+    Node tail<span style="color: #666666">;</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">LinkedList</span><span style="color: #666666">(</span>Node head<span style="color: #666666">,</span> Node tail<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+        <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">head</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>
+        <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">tail</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">delete_a_node_given_previous_node</span><span style="color: #666666">(</span>Node n<span style="color: #666666">;</span> Node previous<span style="color: #666666">){</span>
+        <span style="color: #408080; font-style: italic">//check if node to be dleted is null</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>n <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">){</span>
+            <span style="color: #008000; font-weight: bold">return</span><span style="color: #666666">;</span>
+        <span style="color: #666666">}</span>
+        <span style="color: #408080; font-style: italic">//check if node to be deleted is head than you need to change the head</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>n <span style="color: #666666">==</span> head<span style="color: #666666">){</span>
+            head <span style="color: #666666">=</span> head<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">;</span>
+        <span style="color: #666666">}</span>
+        <span style="color: #408080; font-style: italic">//check if yhe node is tail</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>n <span style="color: #666666">==</span> tail<span style="color: #666666">){</span>
+            tail <span style="color: #666666">=</span> previous<span style="color: #666666">;</span>
+        <span style="color: #666666">}</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>previous <span style="color: #666666">!=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">){</span>
+            previous<span style="color: #666666">.</span><span style="color: #7D9029">next</span> <span style="color: #666666">=</span> previous<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">;</span> <span style="color: #408080; font-style: italic">// previous.next = n.next</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">delete_node_without_previous</span><span style="color: #666666">(</span>Node n<span style="color: #666666">){</span>
+        Node next <span style="color: #666666">=</span> n<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">;</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>next <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">){</span>
+            <span style="color: #008000; font-weight: bold">return</span><span style="color: #666666">;</span>
+        <span style="color: #666666">}</span>
+        n<span style="color: #666666">.</span><span style="color: #7D9029">data</span> <span style="color: #666666">=</span> next<span style="color: #666666">.</span><span style="color: #7D9029">data</span><span style="color: #666666">;</span>
+        <span style="color: #408080; font-style: italic">//utilizing previous function delete node when we have previous and node to be deletd both</span>
+        <span style="color: #408080; font-style: italic">// we need to delete next and keep n which we changed</span>
+        delete_a_node_given_previous_node<span style="color: #666666">(</span>next<span style="color: #666666">,</span> p<span style="color: #666666">);</span>
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>

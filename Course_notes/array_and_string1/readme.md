@@ -166,3 +166,9 @@ https://www.filepicker.io/api/file/jmoYEixvTmjury2XKtlB
 ![alt text](images/big_int_3.png "Title")
 ![alt text](images/bib_int_multiplication.png "Title")
 
+
+**LINE SWEEP**
+
+- You convert list of interval to start and end points
+- sort the points by time (by marking start and end)
+

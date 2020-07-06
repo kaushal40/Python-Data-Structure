@@ -20,6 +20,7 @@ public static int waysToClimb(int n){
 
 
 //top down
+// at any location you can come from -3, -5 or -1 location
 // a[i] = a[i-1] + a[i-3] + a[i-5]
 
 public static int waysToClimb(int n){

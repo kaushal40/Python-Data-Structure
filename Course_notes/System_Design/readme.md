@@ -213,4 +213,25 @@ below two are abstartion on above two
 https://www.filepicker.io/api/file/cLvxxo6LRrWE1FQkjRqV
 
 
+**DISTRIBUTED FILE SYSTEM**
+
+![alt text](images/DFS_1.png "Title")
+![alt text](images/DFS_2.png "Title")
+![alt text](images/DFS_3.png "Title")
+![alt text](images/DFS_4.png "Title")
+
+
+**DISTRIBUTED DATA PROCESSING**
+
+![alt text](images/distributed_data_processing_1.png "Title")
+![alt text](images/distributed_data_processing_2.png "Title")
+![alt text](images/distributed_data_processing_3.png "Title")
+![alt text](images/distributed_data_processing_4.png "Title")
+
+
+**NEAREST NEIGHBOUR SEARCH**
+
+![alt text](images/spacial_index_1.png "Title")
+![alt text](images/spacial_index_2.png "Title")
+![alt text](images/spacial_index_3.png "Title")
 

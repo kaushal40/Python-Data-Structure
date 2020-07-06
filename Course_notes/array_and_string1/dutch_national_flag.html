@@ -1,0 +1,23 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">//We keep 2 boundaries - ​low​ and ​high​. ​</span>
+    <span style="color: #408080; font-style: italic">// Low​ starts at 0, ​High​ starts at the end of the array.</span>
+    <span style="color: #408080; font-style: italic">//Low​ contains numbers less than pivot. ​High​ contains numbers greater than pivot.</span>
+    <span style="color: #408080; font-style: italic">//iterate and update boundries</span>
+    
+    <span style="color: #408080; font-style: italic">// when we put high and low boundry middle elements will automatically be sorted</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">dutchNationalFlag</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">,</span> <span style="color: #B00040">int</span> pivot<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #B00040">int</span> low_boundary <span style="color: #666666">=</span> <span style="color: #666666">0,</span> high_boundary <span style="color: #666666">=</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">-</span> <span style="color: #666666">1;</span>    
+        <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0;</span>    <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>i <span style="color: #666666">&lt;=</span> high_boundary<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">&lt;</span> pivot<span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+                Utils<span style="color: #666666">.</span><span style="color: #7D9029">swap</span><span style="color: #666666">(</span>a<span style="color: #666666">,</span> i<span style="color: #666666">,</span> low_boundary<span style="color: #666666">);</span>            
+                low_boundary<span style="color: #666666">++;</span>            
+                i<span style="color: #666666">++;</span>        
+            <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">&gt;</span> pivot<span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+                Utils<span style="color: #666666">.</span><span style="color: #7D9029">swap</span><span style="color: #666666">(</span>a<span style="color: #666666">,</span> i<span style="color: #666666">,</span> high_boundary<span style="color: #666666">);</span>            
+                high_boundary<span style="color: #666666">--;</span>        
+            <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>           
+                i<span style="color: #666666">++;</span>        
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

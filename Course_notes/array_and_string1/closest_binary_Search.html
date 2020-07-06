@@ -1,0 +1,44 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// Every time we find a new mid, we are trying to move closer to the target.</span>
+    <span style="color: #408080; font-style: italic">// If we keep track of the closest mid we have encountered, that will give us closest element to the target.</span>
+
+    <span style="color: #408080; font-style: italic">// [1,2,4,5,7,8,9], target = 6</span>
+    <span style="color: #408080; font-style: italic">// In the first iteration of binary search, we reach 5. We then go to the secondhalf, since 6 is greater than 5. </span>
+    <span style="color: #408080; font-style: italic">// We consider 5 as a candidate for closest element, but anything in the first half is not a candidate, because they are further away from 6 than 5 is.</span>
+    <span style="color: #408080; font-style: italic">// This applies to every iteration of the search. Hopefully this gives you an intuition of whywe only consider mids.</span>
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">closestElement</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">,</span> <span style="color: #B00040">int</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-1;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #B00040">int</span> low <span style="color: #666666">=</span> <span style="color: #666666">0,</span> high <span style="color: #666666">=</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">-</span> <span style="color: #666666">1;</span>    
+        <span style="color: #B00040">int</span> result <span style="color: #666666">=</span> <span style="color: #666666">-1;</span>    
+        
+        <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>low <span style="color: #666666">&lt;=</span> high<span style="color: #666666">)</span> <span style="color: #666666">{</span>       
+            <span style="color: #B00040">int</span> mid <span style="color: #666666">=</span> low <span style="color: #666666">+</span> <span style="color: #666666">((</span>high <span style="color: #666666">-</span> low<span style="color: #666666">)</span> <span style="color: #666666">&gt;&gt;</span> <span style="color: #666666">1);</span><span style="border: 1px solid #FF0000">​</span> or <span style="color: #408080; font-style: italic">// low + (high - low) / 2</span>
+    
+            <span style="color: #408080; font-style: italic">// record the mid elemnt, compares with previous resutl and keeps the result closest</span>
+            result <span style="color: #666666">=</span> record<span style="color: #666666">(</span>a<span style="color: #666666">,</span> mid<span style="color: #666666">,</span> result<span style="color: #666666">,</span> target<span style="color: #666666">);</span> 
+    
+            <span style="color: #408080; font-style: italic">// normal binary search</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>mid<span style="color: #666666">]</span> <span style="color: #666666">&gt;</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+                high <span style="color: #666666">=</span> mid <span style="color: #666666">-</span> <span style="color: #666666">1;</span>        
+            <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>mid<span style="color: #666666">]</span> <span style="color: #666666">&lt;</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+                low <span style="color: #666666">=</span> mid <span style="color: #666666">+</span> <span style="color: #666666">1;</span>        
+            <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>            
+                <span style="color: #008000; font-weight: bold">return</span> mid<span style="color: #666666">;</span>        
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>    
+        <span style="color: #008000; font-weight: bold">return</span> result<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    
+    <span style="color: #408080; font-style: italic">// this function will record the colsest element,  by comparing mid with previous results </span>
+    <span style="color: #008000; font-weight: bold">private</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">record</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">,</span> <span style="color: #B00040">int</span> mid<span style="color: #666666">,</span> <span style="color: #B00040">int</span> result<span style="color: #666666">,</span> <span style="color: #B00040">int</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>result <span style="color: #666666">==</span> <span style="color: #666666">-1</span> <span style="color: #666666">||</span> Math<span style="color: #666666">.</span><span style="color: #7D9029">abs</span><span style="color: #666666">(</span>a<span style="color: #666666">[</span>mid<span style="color: #666666">]</span> <span style="color: #666666">-</span> target<span style="color: #666666">)</span> <span style="color: #666666">&lt;</span> Math<span style="color: #666666">.</span><span style="color: #7D9029">abs</span><span style="color: #666666">(</span>a<span style="color: #666666">[</span>result<span style="color: #666666">]</span> <span style="color: #666666">-</span> target<span style="color: #666666">))</span>        
+            <span style="color: #008000; font-weight: bold">return</span> mid<span style="color: #666666">;</span>    
+            
+        <span style="color: #008000; font-weight: bold">return</span> result<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

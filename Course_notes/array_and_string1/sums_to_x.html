@@ -1,0 +1,36 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// We use the technique of prefix sums. </span>
+
+    <span style="color: #408080; font-style: italic">// For all elements, we first calculate the sum ​s[i]​ - whichis the sum of all numbers from ​a[0]​ to ​a[i]​. </span>
+    <span style="color: #408080; font-style: italic">// An interesting property emerges: </span>
+    
+    <span style="color: #408080; font-style: italic">// If any ​s[i]​ is 0,then ​a[0]​ to ​a[i]​ sums to 0, so the subarray ​[0..i]​ is the answer.</span>
+    <span style="color: #408080; font-style: italic">// If there is no ​s[i]​ that equals zero, we try to find two ​s[i]​&#39;s that have the same value.</span>
+    <span style="color: #408080; font-style: italic">// For any ​j​ and ​k​, if ​s[j]​and ​s[k]​ have the same value, then the sum of subarray ​[j+1..k]​ is 0.</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> Pair<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> <span style="color: #0000FF">targetSumSubarray</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">,</span> <span style="color: #B00040">int</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span> <span style="color: #666666">||</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">==</span> <span style="color: #666666">0)</span>        
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>    
+            
+        <span style="color: #B00040">int</span> sum <span style="color: #666666">=</span> <span style="color: #666666">0;</span>
+    
+        <span style="color: #408080; font-style: italic">// ti check if total sum - target is there</span>
+        HashMap<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">,</span> Integer<span style="color: #666666">&gt;</span> map <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HashMap<span style="color: #666666">&lt;&gt;();</span>    
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0;</span> i <span style="color: #666666">&lt;</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">;</span> i<span style="color: #666666">++)</span> <span style="color: #666666">{</span>        
+            sum <span style="color: #666666">+=</span> a<span style="color: #666666">[</span>i<span style="color: #666666">];</span>
+    
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>sum <span style="color: #666666">==</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+                <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">new</span> Pair<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;(0,</span>i<span style="color: #666666">);</span>        
+            <span style="color: #666666">}</span>        
+            
+            <span style="color: #408080; font-style: italic">// For any ​j​ and ​k​, if ​s[j]​ and ​s[k]​ have the same value, then the sum of subarray ​[j+1..k]​ is 0.</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>map<span style="color: #666666">.</span><span style="color: #7D9029">containsKey</span><span style="color: #666666">(</span>sum <span style="color: #666666">-</span> target<span style="color: #666666">))</span> <span style="color: #666666">{</span>            
+                <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">new</span> Pair<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;(</span>map<span style="color: #666666">.</span><span style="color: #7D9029">get</span><span style="color: #666666">(</span>sum <span style="color: #666666">-</span> target<span style="color: #666666">)</span> <span style="color: #666666">+</span> <span style="color: #666666">1,</span> i<span style="color: #666666">);</span>        
+            <span style="color: #666666">}</span>        
+            
+            map<span style="color: #666666">.</span><span style="color: #7D9029">put</span><span style="color: #666666">(</span>sum<span style="color: #666666">,</span> i<span style="color: #666666">);</span>    
+        <span style="color: #666666">}</span>  
+    
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span> <span style="color: #408080; font-style: italic">// not found</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

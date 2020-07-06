@@ -1,0 +1,26 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// same as binary search just add one condition to check if the found element is first element</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">firstOccurence</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">,</span> <span style="color: #B00040">int</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-1;</span>    
+        <span style="color: #666666">}</span>   
+    
+        <span style="color: #B00040">int</span> low <span style="color: #666666">=</span> <span style="color: #666666">0;</span>    
+        <span style="color: #B00040">int</span> high <span style="color: #666666">=</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">-</span> <span style="color: #666666">1;</span>    
+        
+        <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>low <span style="color: #666666">&lt;=</span> high<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #B00040">int</span> mid <span style="color: #666666">=</span> low <span style="color: #666666">+</span> <span style="color: #666666">(</span>high <span style="color: #666666">-</span> low<span style="color: #666666">)/2</span> <span style="color: #666666">;</span>        
+            
+            <span style="color: #408080; font-style: italic">// so if mid is grater than tarhet move high and also if ( mid is target and previous element is also target) move left as we want first occurence</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>mid<span style="color: #666666">]</span> <span style="color: #666666">&gt;</span> target <span style="color: #666666">||</span> <span style="border: 1px solid #FF0000">​</span><span style="color: #666666">(</span>a<span style="color: #666666">[</span>mid<span style="color: #666666">]</span> <span style="color: #666666">==</span> target <span style="color: #666666">&amp;&amp;</span> mid <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span> <span style="color: #666666">&amp;&amp;</span> a<span style="color: #666666">[</span>mid <span style="color: #666666">-</span> <span style="color: #666666">1]</span> <span style="color: #666666">==</span> target<span style="border: 1px solid #FF0000">​</span><span style="color: #666666">))</span> <span style="color: #666666">{</span>            
+                high <span style="color: #666666">=</span> mid <span style="color: #666666">-</span> <span style="color: #666666">1;</span>        
+            <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>mid<span style="color: #666666">]</span> <span style="color: #666666">&lt;</span> target<span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+                low <span style="color: #666666">=</span> mid <span style="color: #666666">+</span> <span style="color: #666666">1;</span>        
+            <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>            
+                <span style="color: #008000; font-weight: bold">return</span> mid<span style="color: #666666">;</span>        
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>    
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-1;</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

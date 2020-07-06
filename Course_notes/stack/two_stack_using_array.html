@@ -1,0 +1,55 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">ArrayStack</span><span style="color: #666666">{</span>
+    <span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">;</span>
+    <span style="color: #B00040">int</span> s1<span style="color: #666666">;</span>
+    <span style="color: #B00040">int</span> s2<span style="color: #666666">;</span>
+
+    <span style="color: #408080; font-style: italic">// initialize ArrayStack datastructure with size of array and initial pointers</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">ArrayStack</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> arraySize<span style="color: #666666">){</span>
+        a <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">int</span><span style="color: #666666">[</span>arraySize<span style="color: #666666">];</span>
+        s1 <span style="color: #666666">=</span> <span style="color: #666666">0;</span>
+        s2 <span style="color: #666666">=</span> arraySize <span style="color: #666666">-</span> <span style="color: #666666">1;</span> 
+    <span style="color: #666666">}</span>
+
+    <span style="color: #408080; font-style: italic">// this push will except the stack number to be pushed and the value</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">push</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> stackNumber<span style="color: #666666">,</span> <span style="color: #B00040">int</span> item<span style="color: #666666">)</span> <span style="color: #008000; font-weight: bold">throws</span> StackFullException <span style="color: #666666">{</span>
+        <span style="color: #408080; font-style: italic">//check for invalid value</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>stackNumber <span style="color: #666666">!=</span> <span style="color: #666666">1</span> <span style="color: #666666">&amp;&amp;</span> stackNumber <span style="color: #666666">!=</span> <span style="color: #666666">2)</span>            
+            <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">IllegalArgumentException</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Invalid stack number.&quot;</span><span style="color: #666666">);</span>
+
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>s1<span style="color: #666666">&gt;</span>s2<span style="color: #666666">){</span>
+            <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">StackFullException</span><span style="color: #666666">();</span>
+        <span style="color: #666666">}</span>
+
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>stackNumber <span style="color: #666666">==</span> <span style="color: #666666">1){</span>
+            a<span style="color: #666666">[</span>s1<span style="color: #666666">]</span> <span style="color: #666666">=</span> item<span style="color: #666666">;</span>
+            s1<span style="color: #666666">++;</span>
+        <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>
+            a<span style="color: #666666">[</span>s2<span style="color: #666666">--]</span> <span style="color: #666666">=</span> item<span style="color: #666666">;</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #408080; font-style: italic">// now popoing</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">pop</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> stackNumber<span style="color: #666666">)</span> <span style="color: #008000; font-weight: bold">throws</span> StackEmptyException <span style="color: #666666">{</span>
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>stackNumber <span style="color: #666666">!=</span> <span style="color: #666666">1</span> <span style="color: #666666">&amp;&amp;</span> stackNumber <span style="color: #666666">!=</span> <span style="color: #666666">2){</span>
+            <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">IllegalArgumentException</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Invalid stack number.&quot;</span><span style="color: #666666">);</span>
+        <span style="color: #666666">}</span>
+
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>stackNumber <span style="color: #666666">==</span> <span style="color: #666666">1</span> <span style="color: #666666">&amp;&amp;</span> s1 <span style="color: #666666">&gt;</span> <span style="color: #666666">0)</span>
+            <span style="color: #008000; font-weight: bold">return</span> a<span style="color: #666666">[--</span>s1<span style="color: #666666">];</span>
+        <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> <span style="color: #666666">(</span>stackNumber <span style="color: #666666">==</span> <span style="color: #666666">2</span> <span style="color: #666666">&amp;&amp;</span> s2 <span style="color: #666666">&lt;</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">-</span> <span style="color: #666666">1)</span>
+            <span style="color: #008000; font-weight: bold">return</span> a<span style="color: #666666">[++</span>s2<span style="color: #666666">];</span>
+
+        <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">StackEmptyException</span><span style="color: #666666">();</span>
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+
+<span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">StackFullException</span> <span style="color: #008000; font-weight: bold">extends</span> Exception <span style="color: #666666">{</span>    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">StackFullException</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>    
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+
+<span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">StackEmptyException</span> <span style="color: #008000; font-weight: bold">extends</span> Exception <span style="color: #666666">{</span>    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">StackEmptyException</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>    
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>

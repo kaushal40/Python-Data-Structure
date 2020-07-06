@@ -1,0 +1,80 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// 1. If we encounter a word that is not in S, ignore it.</span>
+    <span style="color: #408080; font-style: italic">// 2. If we encounter a word in S, add it to the front of the list along with its index. Delete any previous   instance.</span>
+    <span style="color: #408080; font-style: italic">// 3. At any time, there is only one instance of a word in the list</span>
+    <span style="color: #408080; font-style: italic">// 4. After adding a word, if the list is full, i.e, if there are as many words as in S, we have a</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> String <span style="color: #0000FF">getShortestSubString</span><span style="color: #666666">(</span>String doc<span style="color: #666666">,</span> HashSet<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> wordSet<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+        String result <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>
+        <span style="color: #408080; font-style: italic">//hashmap for mapping node in linked list</span>
+        HashMap<span style="color: #666666">&lt;</span>String<span style="color: #666666">,</span> Node<span style="color: #666666">&gt;</span> nodeMap <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HashMap<span style="color: #666666">&lt;&gt;();</span>
+        <span style="color: #408080; font-style: italic">//linkedlist for actual nodes - doubly linked list</span>
+        LinkedList linkedList <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> LinkedList<span style="color: #666666">();</span>
+    
+        <span style="color: #408080; font-style: italic">// we can implement worditerator if interviewer asks to</span>
+        WordIterator iter <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> WordIterator<span style="color: #666666">(</span>doc<span style="color: #666666">);</span>
+        <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>iter<span style="color: #666666">.</span><span style="color: #7D9029">hasNext</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>        
+            WordIndex wordIndex <span style="color: #666666">=</span> iter<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">();</span>
+            String word <span style="color: #666666">=</span> wordIndex<span style="color: #666666">.</span><span style="color: #7D9029">getWord</span><span style="color: #666666">();</span>
+            <span style="color: #408080; font-style: italic">// if word is not equal to one provided skip</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(!</span>wordSet<span style="color: #666666">.</span><span style="color: #7D9029">contains</span><span style="color: #666666">(</span>word<span style="color: #666666">))</span>
+                <span style="color: #008000; font-weight: bold">continue</span><span style="color: #666666">;</span>
+            
+            <span style="color: #408080; font-style: italic">// if reaches here than word is compared so see if it is available in linkedlist, if yes remove existing and add new one to tail</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>nodeMap<span style="color: #666666">.</span><span style="color: #7D9029">containsKey</span><span style="color: #666666">(</span>word<span style="color: #666666">)){</span>
+                Node toDelete <span style="color: #666666">=</span> nodeMap<span style="color: #666666">.</span><span style="color: #7D9029">get</span><span style="color: #666666">(</span>word<span style="color: #666666">);</span>
+                linkedList<span style="color: #666666">.</span><span style="color: #7D9029">delete</span><span style="color: #666666">(</span>toDelete<span style="color: #666666">);</span>
+            <span style="color: #666666">}</span>
+    
+            Node newNode <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> Node<span style="color: #666666">(</span>word<span style="color: #666666">,</span> wordIndex<span style="color: #666666">.</span><span style="color: #7D9029">getIndex</span><span style="color: #666666">());</span>
+            linkedList<span style="color: #666666">.</span><span style="color: #7D9029">append</span><span style="color: #666666">(</span>newNode<span style="color: #666666">);</span>
+            nodeMap<span style="color: #666666">.</span><span style="color: #7D9029">put</span><span style="color: #666666">(</span>word<span style="color: #666666">,</span> newNode<span style="color: #666666">);</span>
+    
+            <span style="color: #408080; font-style: italic">// now check if all the words provided to compare are there than update the reult if length is smaller else keep the same results</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>nodeMap<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">()</span> <span style="color: #666666">==</span> wordSet<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>
+                <span style="color: #B00040">int</span> startIndex <span style="color: #666666">=</span> linkedList<span style="color: #666666">.</span><span style="color: #7D9029">head</span><span style="color: #666666">.</span><span style="color: #7D9029">getIndex</span><span style="color: #666666">();</span>
+                <span style="color: #B00040">int</span> endIndex <span style="color: #666666">=</span> linkedList<span style="color: #666666">.</span><span style="color: #7D9029">tail</span><span style="color: #666666">.</span><span style="color: #7D9029">getIndex</span><span style="color: #666666">()</span> <span style="color: #666666">+</span> linkedList<span style="color: #666666">.</span><span style="color: #7D9029">tail</span><span style="color: #666666">.</span><span style="color: #7D9029">getWord</span><span style="color: #666666">().</span><span style="color: #7D9029">length</span><span style="color: #666666">()</span> <span style="color: #666666">-</span> <span style="color: #666666">1;</span>
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>result <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span> <span style="color: #666666">||</span> <span style="color: #666666">(</span>endIndex <span style="color: #666666">-</span> startIndex <span style="color: #666666">+</span> <span style="color: #666666">1)</span> <span style="color: #666666">&lt;</span> result<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>                
+                    result <span style="color: #666666">=</span> doc<span style="color: #666666">.</span><span style="color: #7D9029">substring</span><span style="color: #666666">(</span>startIndex<span style="color: #666666">,</span> endIndex <span style="color: #666666">+</span> <span style="color: #666666">1);</span>            
+                <span style="color: #666666">}</span>
+            <span style="color: #666666">}</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    
+    <span style="color: #408080; font-style: italic">// Doubly linked list</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">LinkedList</span> <span style="color: #666666">{</span>    
+        Node head<span style="color: #666666">;</span>    
+        Node tail<span style="color: #666666">;</span>    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">LinkedList</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            head <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>        
+            tail <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">append</span><span style="color: #666666">(</span>Node toAdd<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>head <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+                head <span style="color: #666666">=</span> toAdd<span style="color: #666666">;</span>        
+            <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>            
+                tail<span style="color: #666666">.</span><span style="color: #7D9029">setNext</span><span style="color: #666666">(</span>toAdd<span style="color: #666666">);</span>            
+                toAdd<span style="color: #666666">.</span><span style="color: #7D9029">setPrev</span><span style="color: #666666">(</span>tail<span style="color: #666666">);</span>        
+            <span style="color: #666666">}</span>        
+            tail <span style="color: #666666">=</span> toAdd<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">delete</span><span style="color: #666666">(</span>Node toDelete<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>toDelete <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">)</span>            
+                <span style="color: #008000; font-weight: bold">return</span><span style="color: #666666">;</span>
+    
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>toDelete<span style="color: #666666">.</span><span style="color: #7D9029">getPrev</span><span style="color: #666666">()</span> <span style="color: #666666">!=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">)</span>            
+                toDelete<span style="color: #666666">.</span><span style="color: #7D9029">getPrev</span><span style="color: #666666">().</span><span style="color: #7D9029">setNext</span><span style="color: #666666">(</span>toDelete<span style="color: #666666">.</span><span style="color: #7D9029">getNext</span><span style="color: #666666">());</span>
+    
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>toDelete<span style="color: #666666">.</span><span style="color: #7D9029">getNext</span><span style="color: #666666">()</span> <span style="color: #666666">!=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">)</span>            
+                toDelete<span style="color: #666666">.</span><span style="color: #7D9029">getNext</span><span style="color: #666666">().</span><span style="color: #7D9029">setPrev</span><span style="color: #666666">(</span>toDelete<span style="color: #666666">.</span><span style="color: #7D9029">getPrev</span><span style="color: #666666">());</span>
+    
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>toDelete <span style="color: #666666">==</span> tail<span style="color: #666666">)</span>            
+                tail <span style="color: #666666">=</span> toDelete<span style="color: #666666">.</span><span style="color: #7D9029">getPrev</span><span style="color: #666666">();</span>  
+    
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>toDelete <span style="color: #666666">==</span> head<span style="color: #666666">)</span>
+                head <span style="color: #666666">=</span> toDelete<span style="color: #666666">.</span><span style="color: #7D9029">getNext</span><span style="color: #666666">();</span>   
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

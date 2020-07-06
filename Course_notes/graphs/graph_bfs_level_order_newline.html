@@ -1,0 +1,95 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// While traversing,​​how to figure out when a level has ended ?</span>
+
+    <span style="color: #408080; font-style: italic">// Approach1: UsingtwoQueues</span>
+
+    <span style="color: #408080; font-style: italic">// We keep two Queues - ​currentLevel​ and ​nextLevel​. We process all the nodesin ​currentLevel​ and put all the neighbors into ​nextLevel​</span>
+    
+    
+    <span style="color: #408080; font-style: italic">// Edge Cases: empty graph</span>
+    <span style="color: #408080; font-style: italic">// Base Cases: graph with 1 node, 2 nodes</span>
+    <span style="color: #408080; font-style: italic">// Regular Cases: graph with many nodes </span>
+    <span style="color: #408080; font-style: italic">// Time Complexity:​ O(V+E) Space Complexity:​ O(V)</span>
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">printLevels</span><span style="color: #666666">(</span>Node root<span style="color: #666666">)</span> <span style="color: #666666">{</span> 
+    
+        <span style="color: #408080; font-style: italic">// queue for maintainting current level </span>
+        Queue<span style="color: #666666">&lt;</span>Node<span style="color: #666666">&gt;</span> currentLevel <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> LinkedList<span style="color: #666666">&lt;</span>Node<span style="color: #666666">&gt;();</span>    
+        
+        <span style="color: #408080; font-style: italic">// queue for maintining the next level (which are basically neighbours of curren levels)</span>
+        Queue<span style="color: #666666">&lt;</span>Node<span style="color: #666666">&gt;</span> nextLevel <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> LinkedList<span style="color: #666666">&lt;</span>Node<span style="color: #666666">&gt;();</span>    
+        
+        <span style="color: #408080; font-style: italic">// current node mark visting</span>
+        currentLevel<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>root<span style="color: #666666">)</span>    
+        root<span style="color: #666666">.</span><span style="color: #7D9029">setState</span><span style="color: #666666">(</span>State<span style="color: #666666">.</span><span style="color: #7D9029">VISITING</span><span style="color: #666666">);</span>    
+        
+        <span style="color: #408080; font-style: italic">// run queue pop and process leafs</span>
+        <span style="color: #008000; font-weight: bold">while</span><span style="color: #666666">(!</span>currentLevel<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>        
+            Node current <span style="color: #666666">=</span> currentLevel<span style="color: #666666">.</span><span style="color: #7D9029">remove</span><span style="color: #666666">();</span>        
+            
+            System<span style="color: #666666">.</span><span style="color: #7D9029">out</span><span style="color: #666666">.</span><span style="color: #7D9029">println</span><span style="color: #666666">(</span>current<span style="color: #666666">);</span>        
+            
+            <span style="color: #408080; font-style: italic">// now run bfsvisit on neighbours </span>
+            <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span>Node <span style="color: #A0A000">neighbor:</span> current<span style="color: #666666">.</span><span style="color: #7D9029">getNeighbors</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>            
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>neighbor<span style="color: #666666">.</span><span style="color: #7D9029">getState</span><span style="color: #666666">()</span> <span style="color: #666666">==</span> State<span style="color: #666666">.</span><span style="color: #7D9029">UNVISITED</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>  
+                    <span style="color: #408080; font-style: italic">// adding it to next level instead of current level               </span>
+                    nextLevel<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>neighbor<span style="color: #666666">);</span>                
+                    neighbor<span style="color: #666666">.</span><span style="color: #7D9029">setState</span><span style="color: #666666">(</span>State<span style="color: #666666">.</span><span style="color: #7D9029">VISITING</span><span style="color: #666666">);</span>            
+                <span style="color: #666666">}</span>        
+            <span style="color: #666666">}</span>        
+            
+            current<span style="color: #666666">.</span><span style="color: #7D9029">setState</span><span style="color: #666666">(</span>State<span style="color: #666666">.</span><span style="color: #7D9029">VISITED</span><span style="color: #666666">);</span>        
+            
+            <span style="color: #408080; font-style: italic">// now when current level is empty make nextleevl current and reinitialixe next level</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>currentLevel<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>            
+                System<span style="color: #666666">.</span><span style="color: #7D9029">out</span><span style="color: #666666">.</span><span style="color: #7D9029">println</span><span style="color: #666666">();</span>            
+                currentLevel <span style="color: #666666">=</span> nextLevel<span style="color: #666666">;</span>            
+                nextLevel <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> LinkedList<span style="color: #666666">&lt;</span>Node<span style="color: #666666">&gt;();</span>        
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">enum</span> State <span style="color: #666666">{</span>    
+        UNVISITED<span style="color: #666666">,</span>    
+        VISITING<span style="color: #666666">,</span>    
+        VISITED<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Node</span> <span style="color: #666666">{</span>    
+        List<span style="color: #666666">&lt;</span>Node<span style="color: #666666">&gt;</span> neighbors<span style="color: #666666">;</span>    
+        <span style="color: #B00040">int</span> data<span style="color: #666666">;</span>    
+        State state<span style="color: #666666">;</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">Node</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> data<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">super</span><span style="color: #666666">();</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">data</span> <span style="color: #666666">=</span> data<span style="color: #666666">;</span>        
+            state <span style="color: #666666">=</span> State<span style="color: #666666">.</span><span style="color: #7D9029">UNVISITED</span><span style="color: #666666">;</span>        
+            neighbors <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> ArrayList<span style="color: #666666">&lt;</span>Node<span style="color: #666666">&gt;();</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">getData</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> data<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">setData</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> data<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">data</span> <span style="color: #666666">=</span> data<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">setState</span><span style="color: #666666">(</span>State state<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">state</span> <span style="color: #666666">=</span> state<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> State <span style="color: #0000FF">getState</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> state<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">addNeighbor</span><span style="color: #666666">(</span>Node node<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            neighbors<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>node<span style="color: #666666">);</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> List<span style="color: #666666">&lt;</span>Node<span style="color: #666666">&gt;</span> <span style="color: #0000FF">getNeighbors</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> neighbors<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span> 
+    </pre></div>
+    

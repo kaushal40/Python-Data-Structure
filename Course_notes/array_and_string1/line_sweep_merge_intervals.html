@@ -1,0 +1,115 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// Merge Intervals - Given a list of intervals, merge all overlapping intervals. </span>
+    <span style="color: #408080; font-style: italic">// At the end of the merge, there should be no overlapping intervals.</span>
+
+    <span style="color: #408080; font-style: italic">// Q. Can we assume the time as an integer (e.g, Unix timestamp)?</span>
+    <span style="color: #408080; font-style: italic">// A. Yes  (This makes the code simpler, you don&#39;t have to mess with Date/Day time formats)</span>
+    <span style="color: #408080; font-style: italic">// Q. Can we assume that all intervals will be valid, i.e, no out of order elements?</span>
+    <span style="color: #408080; font-style: italic">// A. Yes, you can assume that.</span>
+    <span style="color: #408080; font-style: italic">// Q. If two intervals overlap on a single point, e.g., ​(1,3) and (3,5)​, ​ do those count as overlappingintervals?</span>
+    <span style="color: #408080; font-style: italic">// A. Yes, that counts as overlapping intervals.</span>
+    
+    <span style="color: #408080; font-style: italic">//solution is line sweep first sort and thn sweep and while sweeping we maintian the count</span>
+    
+    <span style="color: #408080; font-style: italic">// turn intervals into points and sort points</span>
+    <span style="color: #408080; font-style: italic">// num_intervals = 0</span>
+    <span style="color: #408080; font-style: italic">// currentStart = null</span>
+    <span style="color: #408080; font-style: italic">// for each point:     </span>
+    <span style="color: #408080; font-style: italic">//     if point is start:         </span>
+    <span style="color: #408080; font-style: italic">//     num_intervals++         </span>
+    <span style="color: #408080; font-style: italic">//     if num_intervals is 1:     // so if numinterval becomes 2 we ignore so it&#39;s merged</span>
+    <span style="color: #408080; font-style: italic">//          currentStart = point</span>
+    <span style="color: #408080; font-style: italic">//     else if point is end:</span>
+    <span style="color: #408080; font-style: italic">//          num_intervals--</span>
+    <span style="color: #408080; font-style: italic">//          if num_intervals is 0:</span>
+    <span style="color: #408080; font-style: italic">//               output new interval&lt;currentStart, point&gt; </span>
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> List<span style="color: #666666">&lt;</span>Interval<span style="color: #666666">&gt;</span> <span style="color: #0000FF">hasOverlap</span><span style="color: #666666">(</span>Interval<span style="color: #666666">[]</span> intervals<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        
+        <span style="color: #408080; font-style: italic">// Turn Intervals into Points    </span>
+        List<span style="color: #666666">&lt;</span>Point<span style="color: #666666">&gt;</span> points <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> ArrayList<span style="color: #666666">&lt;</span>Point<span style="color: #666666">&gt;();</span>    
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span>Interval interval <span style="color: #666666">:</span> intervals<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            points<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">new</span> Point<span style="color: #666666">(</span>interval<span style="color: #666666">.</span><span style="color: #7D9029">getStart</span><span style="color: #666666">(),</span> <span style="color: #008000; font-weight: bold">true</span> <span style="color: #408080; font-style: italic">/*isStart*/</span><span style="color: #666666">));</span>        
+            points<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">new</span> Point<span style="color: #666666">(</span>interval<span style="color: #666666">.</span><span style="color: #7D9029">getEnd</span><span style="color: #666666">(),</span> <span style="color: #008000; font-weight: bold">false</span> <span style="color: #408080; font-style: italic">/*isStart*/</span><span style="color: #666666">));</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #408080; font-style: italic">// Sort the Points in order of time    </span>
+        <span style="color: #408080; font-style: italic">// ​Sort order is defined by the Comparable interface, which Point implements    </span>
+        Collections<span style="color: #666666">.</span><span style="color: #7D9029">sort</span><span style="color: #666666">(</span>points<span style="color: #666666">);</span>    
+        
+        List<span style="color: #666666">&lt;</span>Interval<span style="color: #666666">&gt;</span> result <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> ArrayList<span style="color: #666666">&lt;</span>Interval<span style="color: #666666">&gt;();</span>    
+        <span style="color: #408080; font-style: italic">// Loop through Points </span>
+    
+        <span style="color: #B00040">int</span> numIntervals <span style="color: #666666">=</span> <span style="color: #666666">0;</span>    
+        Point startPoint <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span><span style="color: #666666">;</span>    
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0;</span> i <span style="color: #666666">&lt;</span> points<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">();</span> i<span style="color: #666666">++)</span> <span style="color: #666666">{</span>        
+            Point point <span style="color: #666666">=</span> points<span style="color: #666666">.</span><span style="color: #7D9029">get</span><span style="color: #666666">(</span>i<span style="color: #666666">);</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>point<span style="color: #666666">.</span><span style="color: #7D9029">isStart</span><span style="color: #666666">())</span> <span style="color: #666666">{</span> 
+                <span style="color: #408080; font-style: italic">// new interval           </span>
+                numIntervals<span style="color: #666666">++;</span>
+                <span style="color: #408080; font-style: italic">// ignotring when start interval becomes 2 will give us merged interval            </span>
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>numIntervals <span style="color: #666666">==</span> <span style="color: #666666">1)</span>                
+                    startPoint <span style="color: #666666">=</span> point<span style="color: #666666">;</span>        
+                <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>              
+                    <span style="color: #408080; font-style: italic">// end of interval            </span>
+                    numIntervals<span style="color: #666666">--;</span>            
+                    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>numIntervals <span style="color: #666666">==</span> <span style="color: #666666">0)</span>
+                        <span style="border: 1px solid #FF0000">​</span>result<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>newInterval<span style="color: #666666">(</span>startPoint<span style="color: #666666">.</span><span style="color: #7D9029">getTime</span><span style="color: #666666">(),</span>point<span style="color: #666666">.</span><span style="color: #7D9029">getTime</span><span style="color: #666666">()));</span>        
+                    <span style="color: #666666">}</span>    
+                <span style="color: #666666">}</span>    
+                <span style="color: #008000; font-weight: bold">return</span> result<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Interval</span> <span style="color: #666666">{</span>    
+        <span style="color: #B00040">int</span> start<span style="color: #666666">;</span>    
+        <span style="color: #B00040">int</span> end<span style="color: #666666">;</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">Interval</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> start<span style="color: #666666">,</span> <span style="color: #B00040">int</span> end<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+            <span style="color: #008000; font-weight: bold">super</span><span style="color: #666666">();</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">start</span> <span style="color: #666666">=</span> start<span style="color: #666666">;</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">end</span> <span style="color: #666666">=</span> end<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">getStart</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> start<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">getEnd</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> end<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    
+    <span style="color: #408080; font-style: italic">//comparable interface for sorting</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Point</span> <span style="color: #008000; font-weight: bold">implements</span> Comparable<span style="color: #666666">&lt;</span>Point<span style="color: #666666">&gt;</span> <span style="color: #666666">{</span>    
+        <span style="color: #B00040">int</span> time<span style="color: #666666">;</span>    
+        <span style="color: #B00040">boolean</span> isStart<span style="color: #666666">;</span>   
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">Point</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> time<span style="color: #666666">,</span> <span style="color: #B00040">boolean</span> isStart<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">super</span><span style="color: #666666">();</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">time</span> <span style="color: #666666">=</span> time<span style="color: #666666">;</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">isStart</span> <span style="color: #666666">=</span> isStart<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">getTime</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> time<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">boolean</span> <span style="color: #0000FF">isStart</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">return</span> isStart<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        
+        <span style="color: #AA22FF">@Override</span>
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">compareTo</span><span style="color: #666666">(</span>Point other<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>time <span style="color: #666666">==</span> other<span style="color: #666666">.</span><span style="color: #7D9029">getTime</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>            
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>isStart <span style="color: #666666">==</span> other<span style="color: #666666">.</span><span style="color: #7D9029">isStart</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>                
+                    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0;</span>            
+                <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>                
+                    <span style="color: #008000; font-weight: bold">return</span> isStart <span style="color: #666666">?</span> <span style="color: #666666">-1</span> <span style="color: #666666">:</span> <span style="color: #666666">1;</span>            
+                <span style="color: #666666">}</span>        
+            <span style="color: #666666">}</span>       
+        <span style="color: #008000; font-weight: bold">return</span> time <span style="color: #666666">&gt;</span> other<span style="color: #666666">.</span><span style="color: #7D9029">getTime</span><span style="color: #666666">()</span> <span style="color: #666666">?</span> <span style="color: #666666">1</span> <span style="color: #666666">:</span> <span style="color: #666666">-1;</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+  <style>
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 5px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <br/>
+  <div class="container" style="margin-left:100px; width:100%">
+    <select class="selectpicker" id="inputType" data-max-options="2" title="InputType">
+        <option></option>
+        <option>linkedlist</option>
+        <option>List</option>
+        <option>String</option>
+        <option>Array</option>
+        <option>Pair</option>
+        <option>Stream</option>
+        <option>Graph</option>
+        <option>time interva</option>
+    </select>
+    <select class="selectpicker" id="algoTech" data-max-options="2" title="Algo-Technique">
+        <option></option>
+        <option>two pointers linkedlist</option>
+        <option>slow fast pointers linkedlist</option>
+        <option>linked hashmap</option>
+        <option>two stack</option>
+        <option>stack with max</option>
+        <option>Queue Sliding Window</option>
+        <option>two queues</option>
+        <option>maximum diff</option>
+        <option>array reverse traversal</option>
+        <option>array traverse both ends</option>
+        <option>partitioning array</option>
+        <option>subarray - kadane's subarray (+ve & -ve | return single)</option>
+        <option>subarray | substring - sliding window (+ve & unique numbers)</option>
+        <option>subarray - prefix sum (+ve & -ve | return multiple results)</option>
+        <option>binary search (sorted)</option>
+        <option>binary search (sorted with duplicates)</option>
+        <option>binary search (record and move on | closest result)</option>
+        <option>binary search (rotated | Cyclically Sorted Arrays)</option>
+        <option>line sweep | time interval problems</option>
+        <option>layer traversal</option>
+        <option>spiral traversal</option>
+        <option>zigzag traversal</option>
+        <option>expand from element and space</option>
+        <option>addition | multiplication</option>
+        <option>dynamic programming</option>
+        <option>hashcode polynomial</option>
+        <option>Graph - DFS (directed)</option>
+        <option>Graph - DFS (undirected)</option>
+        <option>Graph - DFS  TOPOLOGICAL SORT (directed graph)</option>
+        <option>Graph - BFS (directed)</option>
+        <option>Heap - Finding K smallest elements</option>
+        <option>Heap - stream</option>
+    </select>
+    <select class="selectpicker" id="dataStructure" data-max-options="2" title="DataStructure">
+        <option></option>
+        <option>linkedlist</option>
+        <option>stack</option>
+        <option>queue</option>
+    </select>
+    <select class="selectpicker" id="coreId" data-max-options="2" title="Core-refrence">
+        <option></option>
+        <option>Good DS design reference</option>
+        <option>reusable</option>
+        <option>Data structure design</option>
+        <option>doubly linkedlist</option>
+    </select>
+  <br/>
+  <br/>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br/>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>InputType</th>
+        <th>Algorithm</th>
+        <th>Definition</th>
+        <th>DS Used</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      <tr>
+        <td class="nosearch" colspan="4" style="background-color:rgb(100, 175, 185); text-align:center"><B>LINKEDLIST</B></td>  
+      </tr>     
+      <tr>
+        <td></td>
+        <td></td>
+        <td><a href="Course_notes/linked_list/linked_list_implementation.html" target="_blank">Implement Linkedlist</a></td>
+        <td>reusable for linkedlist, Data structure design</td>
+      </tr>
+      <tr>
+        <td>linkedlist</td>
+        <td></td>
+        <td><a href="Course_notes/linked_list/delete_a_node_From_linkedlist.html"> Delete a node in LinkedList front and back</a></td>
+        <td>linkedlist</td>
+      </tr>
+      <tr>
+        <td>linkedlist</td>
+        <td>two pointers linkedlist</td>
+        <td><a href="https://www.programcreek.com/2015/03/leetcode-odd-even-linked-list-java/">Odd Even LinkedList</a></td>
+        <td>linkedlist</td>
+      </tr>
+      <tr>
+        <td>linkedlist</td>
+        <td>slow fast pointers linkedlist | two pointers linkedlist</td>
+        <td><a href="Course_notes/linked_list/linked_list_cycle_and_length.html"> LinkedList Cycle || length of linkedlist cycle || find the start point of cycle</a></td>
+        <td>reusable for slow fast pointer</td>
+      </tr>
+      <tr>
+        <td>linkedlist</td>
+        <td>slow fast pointers linkedlist | two pointers linkedlist</td>
+        <td><a href="Course_notes/linked_list/linked_list_median.html">LinkedList Median | middle element</a><br></a></td>
+        <td>linkedlist</td>
+      </tr>
+      <tr>
+        <td>linkedlist</td>
+        <td>slow fast pointers linkedlist | two pointers linkedlist</td>
+        <td><a href="https://www.programcreek.com/2014/05/leetcode-remove-nth-node-from-end-of-list-java/">Remove or print Nth Node From End of linkedList</a><br></a></td>
+        <td>linkedlist</td>
+      </tr>
+      <tr>
+        <td>linkedlist</td>
+        <td>slow fast pointers linkedlist | two pointers linkedlist</td>
+        <td><a href="https://www.programcreek.com/2014/07/leetcode-palindrome-linked-list-java/"> Check if LinkedList is palindrome or not</a><br></td>
+        <td>linkedlist, palindrome</td>
+      </tr>
+      <tr>
+        <td>List| Array | String</td>
+        <td>linked hashmap</td>
+        <td><a href="Course_notes/linked_list/smallest_subarray_document.html">Smallest subarray containing all the given words</a><br></a></td>
+        <td>doubly linkedlist , hashmap , linked hashmap</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>linked hashmap</td>
+        <td><a href="https://www.programcreek.com/2013/03/leetcode-lru-cache-java/">LRU Cache (doubly linked list + hashmap)</a><br></a></td>
+        <td>doubly linkedlist , hashmap , linked hashmap, Data structure design, Cache</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="nosearch" style="background-color:rgb(100, 175, 185); text-align:center"><B>STACK</B></td>  
+      </tr> 
+      <tr>
+        <td></td>
+        <td>two stack</td>
+        <td><a href="https://www.programcreek.com/2014/07/leetcode-implement-queue-using-stacks-java/" target="_blank">Implement queue using stacks (two stack)</a><br></td>
+        <td>stack, queue, Data structure design, Cache</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><a href="Course_notes/stack/two_stack_using_array.html" target="_blank">Implement two stacks using array</a><br></td>
+        <td>Good DS design reference, Data structure design</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>stack with max</td>
+        <td><a href="Course_notes/stack/stack_pop_max.html" target="_blank">Stack with Maximum technique (keep track of max in stack)</a><br></td>
+        <td>Good DS design reference, Data Structure design</td>
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>two stack</td>
+        <td><a href="Course_notes/stack/infix_evaluation_stack.html" target="_blank">Stack expression infix evaluation</a><br></br></td>
+        <td>stack, expression evaluation</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="nosearch" style="background-color:rgb(100, 175, 185); text-align:center"><B>QUEUE</B></td>  
+      </tr> 
+      <tr>
+        <td></td>
+        <td></td>
+        <td><a href="Course_notes/Queue/queue_using_Array.html" target="_blank">Implement queue using array</a><br></td>
+        <td>Good DS design reference, Data Structure design, Queue</td>
+      </tr>
+      <tr>
+        <td>Array, Stream</td>
+        <td>Streaming Data | Queue Sliding Window</td>
+        <td><a href="Course_notes/Queue/sliding_window_queue.html" target="_blank">Sum of last K elements (use queue to maintain last K elements)</a><br></td>
+        <td>Queue, Stream data</td>
+      </tr>
+      <tr>
+        <td>Array | Stream | Pair</td>
+        <td>Streaming Data | Queue Sliding Window</td>
+        <td><a href="Course_notes/Queue/sliding_window_stocks.html" target="_blank">Maximum stock price in last K day </a><br></td>
+        <td>Queue, Stream data, stock</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>two queues</td>
+        <td><a href="Course_notes/Queue/queue_with_o1_max_lookup.html" target="_blank">Queue with Max element lookup in O(1) (use two queues)</a><br></td>
+        <td>Data Structure design</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="nosearch" style="background-color:rgb(100, 175, 185); text-align:center"><B>DYNAMIC PROGRAMMING</B></td>  
+      </tr> 
+      <tr>
+        <td>int</td>
+        <td>dynamic programming</td>
+        <td><a href="Course_notes/dynamic_programming/fibonacci.java" target="_blank">Fibonacci</a><br></td>
+        <td>recusrion, memoization and tabulation</td>
+      </tr>
+      <tr>
+        <td>int, array</td>
+        <td>dynamic programming</td>
+        <td><a href="Course_notes/dynamic_programming/climbing_steps.java" target="_blank">Climbing steps (number of ways you can climb)</a><br></td>
+        <td>memoization and tabulation, staircase</td>
+      </tr>
+      <tr>
+        <td>int, array</td>
+        <td>dynamic programming</td>
+        <td><a href="Course_notes/dynamic_programming/coin_change.html" target="_blank">Coin change problem</a><br></td>
+        <td>memoization and tabulation, coin,  target</td>
+      </tr>
+      <!-- array start  -->
+      <tr>
+        <td colspan="4" class="nosearch" style="background-color:rgb(100, 175, 185); text-align:center"><B>ARRAY</B></td>  
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>array reverse traversal</td>
+        <td><a href="Course_notes/array_and_string1/replace_each_even_number_same_of_two.html" target="_blank">Replace array with two of all even numbers</a><br></td>
+        <td>array reverse</td>
+      </tr>
+
+      <tr>
+        <td>array | int</td>
+        <td>array traverse both ends</td>
+        <td><a href="Course_notes/array_and_string1/sorted_Array_sum.html" target="_blank">Sorted array sum to target</a><br></td>
+        <td>sum</td>
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>array traverse both ends</td>
+        <td><a href="Course_notes/array_and_string1/sorted_array_square.html" target="_blank">Sorted array non-decreasing order, return an array of squares of each number, alsoin non-decreasing order.</a><br></td>
+        <td>squared array</td>
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>array traverse both ends</td>
+        <td><a href="Course_notes/array_and_string1/sort_subarray_to_make_Array_sorted.html" target="_blank">Find Shortest Unsorted Subarray to Sort the Array</a><br></td>
+        <td>find the shortest subarray, that if sorted, results in theentire array being sorted</td>
+      </tr>
+      
+      <tr>
+        <td>array</td>
+        <td>partitioning array</td>
+        <td><a href="Course_notes/array_and_string1/move_zeros_to_begining.html" target="_blank">rearrange array to move all zeros to front | or move to end</a><br></td>
+        <td>Move Zeros to Beginning | Move Zeros to End | boundry technique</td>
+      </tr>
+      <tr>
+        <td>array | int</td>
+        <td>partitioning array | three way</td>
+        <td><a href="Course_notes/array_and_string1/dutch_national_flag.html" target="_blank">Given array and pivot, rearrange array so element less than pivot, greater thn pivot</a><br></td>
+        <td>Dutch national flag| three way partiioning | boundry technique</td>
+      </tr>
+      <tr>
+        <td>array | int</td>
+        <td>partitioning array | three way</td>
+        <td><a href="Course_notes/array_and_string1/rearrange_marbels.html" target="_blank">Rearannge marbels by color | three colors</a><br></td>
+        <td>rearrange marbles | good reference enum</td>
+      </tr>
+
+      <tr>
+        <td>array</td>
+        <td>subarray - kadane's subarray (+ve & -ve | return single)</td>
+        <td><a href="Course_notes/array_and_string1/subarray_max_Sum.html" target="_blank">Find the contiguous subarray with the largest / max sum</a><br></td>
+        <td>subarray</td>
+      </tr>
+      <tr>
+        <td>array | int</td>
+        <td>subarray | substring - sliding window (+ve & unique numbers)</td>
+        <td><a href="Course_notes/array_and_string1/subarray_max_sum_positives.html" target="_blank">Given an array of positive integers, find a subarray that sums to a given number X</a><br></td>
+        <td>subarray</td>
+      </tr>
+      <tr>
+        <td>array | string</td>
+        <td>subarray | substring - sliding window (+ve & unique numbers)</td>
+        <td><a href="Course_notes/array_and_string1/longest_substring_with_unique.html" target="_blank">Given a String, find the longest substring with unique characters</a><br></td>
+        <td>substring</td>
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>subarray - prefix sum (+ve & -ve | return multiple results)</td>
+        <td><a href="Course_notes/array_and_string1/subarray_sums_to_0.html" target="_blank">find a contiguous subarray that sums to 0</a><br></td>
+        <td>subarray</td>
+      </tr>
+      <tr>
+        <td>array | int</td>
+        <td>subarray - prefix sum (+ve & -ve | return multiple results)</td>
+        <td><a href="Course_notes/array_and_string1/sums_to_x.html" target="_blank">find a contiguous subarray that sums to a number X</a><br></td>
+        <td>subarray</td>
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>maximum diff</td>
+        <td><a href="https://www.programcreek.com/2014/02/leetcode-best-time-to-buy-and-sell-stock-java/" title="Best Time to Buy and Sell Stock">Best Time to Buy and Sell Stock  (one transction allowed) | maxdiff technique</a><br></td>
+        <td>Stocks</td>
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>maximum diff</td>
+        <td><a href="https://www.programcreek.com/2014/02/leetcode-best-time-to-buy-and-sell-stock-ii-java/" title="Best Time to Buy and Sell Stock II">Best Time to Buy and Sell Stock II (multiple transaction allowed)</a><br></td>
+        <td>Stocks</td>
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>maximum diff</td>
+        <td><a href="https://www.programcreek.com/2014/02/leetcode-best-time-to-buy-and-sell-stock-iii-java/">Best Time to Buy and Sell Stock III (two transaction buy or sell) (divide and concure) </a><br></td>
+        <td>Stocks</td>
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>maximum diff</td>
+        <td><a href="https://www.programcreek.com/2014/03/leetcode-best-time-to-buy-and-sell-stock-iv-java/" title="LeetCode – Best Time to Buy and Sell Stock IV (Java)" target="_blank">Best Time to Buy and Sell Stock IV (K transcation allowed) </a><br></td>
+        <td>Stocks</td>
+      </tr>
+      <tr>
+        <td>array | string</td>
+        <td>expand from element and space</td>
+        <td><a href="Course_notes/array_and_string1/longest_palindrom.html" title="Longest Palindromic Substring in Java">Longest Palindromic Substring</a><br></td>
+        <td>palindrome, longest</td>
+      </tr>
+      <tr>
+        <td>array | string</td>
+        <td>addition | multiplication</td>
+        <td><a href="Course_notes/array_and_string1/big_int_Addition.html" >Big Int addtion or string addition</a><br></td>
+        <td>addition</td>
+      </tr>
+      <tr>
+        <td>array | string</td>
+        <td>addition | multiplication</td>
+        <td><a href="Course_notes/array_and_string1/big_int_multiplication.html" >Big Int multiplication or string multiplication</a><br></td>
+        <td>multiplication</td>
+      </tr>
+
+      <tr>
+        <td>array | int</td>
+        <td>binary search (sorted)</td>
+        <td><a href="Course_notes/array_and_string1/binary_Search.html">Given a sorted array, search for a target item</a><br></td>
+        <td>implementation</td>
+      </tr>
+      <tr>
+        <td>array | int</td>
+        <td>binary search (sorted with duplicates)</td>
+        <td><a href="Course_notes/array_and_string1/first_occurance_in_sorted_duplicate_array.html">Given a sorted array with duplicates, find the first occurrence of a target element T</a><br></td>
+        <td>sorted array with duplicates</td>
+      </tr>
+      <tr>
+        <td>array | int</td>
+        <td>binary search (sorted with duplicates)</td>
+        <td><a href="Course_notes/array_and_string1/first_occurance_in_sorted_duplicate_array.html">sorted array A and a target T. Return the index where it would be placed if inserted in order</a><br></td>
+        <td>sorted array with duplicates | find index to be inserted</td>
+      </tr>
+      <tr>
+        <td>array | int</td>
+        <td>binary search (record and move on | closest result)</td>
+        <td><a href="Course_notes/array_and_string1/closest_binary_Search.html">Sorted array A and a target T, find the target. If the target is not found,return the element closest to the target</a><br></td>
+        <td>sorted array closest target</td>
+      </tr>
+
+
+      <tr>
+        <td>array</td>
+        <td>binary search (rotated | Cyclically Sorted Arrays)</td>
+        <td><a href="Course_notes/array_and_string1/search_in_rotated_sorted.html">Given an array that is cyclically sorted, find the minimum element</a><br></td>
+        <td>minimum in rotated sorted array</td>
+      </tr>
+
+      BINARY SEARCH SPECIAL TRICKS REMAINING
+
+      <tr>
+        <td>time interval</td>
+        <td>line sweep | time interval problems</td>
+        <td><a href="Course_notes/array_and_string1/first_occurance_in_sorted_duplicate_array.html">Given a list of time intervals, find if any of them overlap</a><br></td>
+        <td>time overlap | comparator interface</td>
+      </tr>
+      <tr>
+        <td>time interval</td>
+        <td>line sweep | time interval problems</td>
+        <td><a href="Course_notes/array_and_string1/line_sweep_merge_intervals.html">Given a list of time intervals, merge all overlapping intervals</a><br></td>
+        <td>time overlap | comparator interface</td>
+      </tr>
+
+      <!-- array end  -->
+      <!-- matrix start  -->
+      <tr>
+        <td colspan="4" class="nosearch" style="background-color:rgb(100, 175, 185); text-align:center"><B>MATRIX</B></td>  
+      </tr>
+      <tr>
+        <td>Matrix</td>
+        <td>layer traversal</td>
+        <td><a href="Course_notes/array_and_string1/rotatematrix.html" target="_blank">Rotate Image / Rotate 2D array 90 degree</a><br></td>
+        <td>rotate 2D array</td>
+      </tr>
+      <tr>
+        <td>Matrix</td>
+        <td>zigzag traversal</td>
+        <td><a href="Course_notes/array_and_string1/array_zigzag.html" target="_blank">Traversing array in zigzag</a><br></td>
+        <td>rotate 2D array</td>
+      </tr>
+      <tr>
+        <td>Matrix</td>
+        <td>spiral traversal</td>
+        <td><a href="Course_notes/array_and_string1/array_spiral.html" target="_blank">Array Spiral | layer traversal</a><br></td>
+        <td>rotate 2D array</td>
+      </tr>
+      <!-- matrix end  -->
+      <!-- hashtable-->
+      <tr>
+        <td colspan="4" class="nosearch" style="background-color:rgb(100, 175, 185); text-align:center"><B>HASHTABLE</B></td>  
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><a href="http://bigdatums.net/2016/07/19/how-to-create-a-hash-table-in-java-chaining-example/" target="_blank">Hashtable or hashmap implementation</a><br></td>
+        <td>Data Structure design</td>
+      </tr>
+      <tr>
+        <td>string</td>
+        <td>hashcode polynomial</td>
+        <td><a href="Course_notes/hashtable/hashcode.html" target="_blank">Hashcode implementation (polynomial)</a><br></td>
+        <td>hashcode</td>
+      </tr>
+      <tr>
+        <td>string</td>
+        <td>hashcode polynomial</td>
+        <td><a href="Course_notes/hashtable/string_serach.html" target="_blank">String search or substring serach in string | Rabin Karp</a><br></td>
+        <td>hashcode, string serach</td>
+      </tr>
+      <!-- hashtable end-->
+      <!-- graph-->
+      <tr>
+        <td colspan="4" class="nosearch" style="background-color:rgb(100, 175, 185); text-align:center"><B>GRAPH</B></td>  
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><a href="Course_notes/graphs/graph_implementation.html" target="_blank">graph implementation</a><br></td>
+        <td>Data Structure design</td>
+      </tr>
+      <tr>
+        <td>Graph | target</td>
+        <td>Graph - DFS (directed)</td>
+        <td><a href="Course_notes/graphs/graph_dfs_target.html" target="_blank">Given a graph and a target number T, find T exists in the graph.</a><br></td>
+        <td>Data Structure design | DFS </td>
+      </tr>
+      <tr>
+        <td>Graph</td>
+        <td>Graph - DFS (undirected)</td>
+        <td><a href="Course_notes/graphs/graph_dfs_clone.html" target="_blank">Given an undirected graph make a copy.</a><br></td>
+        <td>DFS Graph clone</td>
+      </tr>
+      <tr>
+        <td>Graph</td>
+        <td>Graph - DFS  TOPOLOGICAL SORT (directed graph) </td>
+        <td><a href="Course_notes/graphs/topological_sort_1.html" target="_blank">Determine the minimum number of semesters to finish all the courses</a><br></td>
+        <td>DFS | scheduling problem | arrange graph in order</td>
+      </tr>
+      <tr>
+        <td>Graph</td>
+        <td>Graph - DFS  TOPOLOGICAL SORT (directed graph) </td>
+        <td><a href="Course_notes/graphs/longest_path_in_graph.html" target="_blank">Diameter of a Graph: Given a directed graph, find the length of the longest path in the graph.</a><br></td>
+        <td>DFS | topological sort | dynamic programming</td>
+      </tr>
+
+      <tr>
+        <td>Graph | target</td>
+        <td>Graph - BFS (directed)</td>
+        <td><a href="Course_notes/graphs/graph_bfs_target.html" target="_blank">Given a graph and a target number T, find T exists in the graph.</a><br></td>
+        <td>Data Structure design | BFS </td>
+      </tr>
+      <tr>
+        <td>Graph</td>
+        <td>Graph - BFS (directed)</td>
+        <td><a href="Course_notes/graphs/graph_bfs_level_order_newline.html" target="_blank">Print Graph in Level Order: Given a graph node N, Each level should be in a new line.</a><br></td>
+        <td>BFS | level order traversal | two queues</td>
+      </tr>
+      <tr>
+        <td>Graph</td>
+        <td>Graph - BFS (directed)</td>
+        <td><a href="Course_notes/graphs/word_ladder.html" target="_blank">Changing one lettet at a time, transform one word to another.</a><br></td>
+        <td>BFS | word ladder problem | print out the intermediate words</td>
+      </tr>
+      <!-- graph end-->
+
+      <!-- Heap-->
+      <tr>
+        <td colspan="4" class="nosearch" style="background-color:rgb(100, 175, 185); text-align:center"><B>HEAP</B></td>  
+      </tr>
+      <tr>
+        <td>array</td>
+        <td>Heap - Finding K smallest elements</td>
+        <td><a href="Course_notes/heaps/find_k_smallest.html" target="_blank">Find the K smallest numbers in an array</a><br></td>
+        <td>Heap | maxheap</td>
+      </tr>
+      <tr>
+        <td>array | stream</td>
+        <td>Heap - stream</td>
+        <td><a href="Course_notes/heaps/stream_median.html" target="_blank">Given a stream of integers, find their median (min heap and max heap)</a><br></td>
+        <td>Heap | median</td>
+      </tr>
+      <!-- Heap end-->
+
+
+
+
+    </tbody>
+  </table>
+</div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      if(!$(this).children('td').hasClass('nosearch'))
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#inputType").on("change keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      if(!$(this).children('td').hasClass('nosearch'))
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#algoTech").on("change keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      if(!$(this).children('td').hasClass('nosearch'))  
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#dataStructure").on("change keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      if(!$(this).children('td').hasClass('nosearch'))  
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#coreId").on("change keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      if(!$(this).children('td').hasClass('nosearch'))  
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+</body>
+</html>

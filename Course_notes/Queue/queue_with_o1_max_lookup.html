@@ -1,0 +1,41 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// Implement a Queue with O(1) lookup of the Maximum element.</span>
+
+    <span style="color: #408080; font-style: italic">//We use a similar approach as stacks - keep two queues - a main queue and a max queue.</span>
+    <span style="color: #408080; font-style: italic">// The main queue contains the elements. The max queue contains the max elements. </span>
+    <span style="color: #408080; font-style: italic">//The maxqueue is a double ended queue (deque) because we want to be able to remove elementsfrom both ends.</span>
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">QueueWithMax</span> <span style="color: #666666">{</span>
+        Queue<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> main<span style="color: #666666">;</span>
+        Deque<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> max<span style="color: #666666">;</span>
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">QueueWithMax</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>
+            main <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> LinkedList<span style="color: #666666">&lt;&gt;();</span>
+            max <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> LinkedList<span style="color: #666666">&lt;&gt;();</span>
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">enqueue</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> item<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+            main<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>item<span style="color: #666666">);</span>
+            <span style="color: #408080; font-style: italic">// we will remove last element if it is less thn current item</span>
+            <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(!</span>max<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">()</span> <span style="color: #666666">&amp;&amp;</span> max<span style="color: #666666">.</span><span style="color: #7D9029">getLast</span><span style="color: #666666">()</span> <span style="color: #666666">&lt;</span> item<span style="color: #666666">)</span>
+                max<span style="color: #666666">.</span><span style="color: #7D9029">removeLast</span><span style="color: #666666">();</span>
+            max<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>item<span style="color: #666666">);</span>
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">dequeue</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> QueueEmptyException <span style="color: #666666">{</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>main<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span>
+                <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">QueueEmptyException</span><span style="color: #666666">();</span>
+            <span style="color: #B00040">int</span> item <span style="color: #666666">=</span> main<span style="color: #666666">.</span><span style="color: #7D9029">remove</span><span style="color: #666666">();</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>max<span style="color: #666666">.</span><span style="color: #7D9029">getFirst</span><span style="color: #666666">()</span> <span style="color: #666666">==</span> item<span style="color: #666666">)</span>
+                max<span style="color: #666666">.</span><span style="color: #7D9029">remove</span><span style="color: #666666">();</span>
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">findMax</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> QueueEmptyException <span style="color: #666666">{</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>max<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span>
+                <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">QueueEmptyException</span><span style="color: #666666">();</span>
+            <span style="color: #008000; font-weight: bold">return</span> max<span style="color: #666666">.</span><span style="color: #7D9029">getFirst</span><span style="color: #666666">();</span>
+        <span style="color: #666666">}</span>
+    
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

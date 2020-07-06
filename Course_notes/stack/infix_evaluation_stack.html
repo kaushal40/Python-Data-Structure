@@ -1,0 +1,84 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">evaluate</span><span style="color: #666666">(</span><span style="color: #B00040">char</span><span style="color: #666666">[]</span> expression<span style="color: #666666">){</span>
+    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>expression <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">null</span> <span style="color: #666666">||</span> expression<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">==</span> <span style="color: #666666">0){</span>
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0;</span>
+    <span style="color: #666666">}</span>
+
+    Stack<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> operand <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> Stack<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;();</span>
+    Stack<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> operator <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> Stack<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;();</span>
+
+    <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">char</span> c <span style="color: #666666">:</span> expression<span style="color: #666666">){</span>
+        <span style="color: #408080; font-style: italic">// If it is number add it to list</span>
+        <span style="color: #008000; font-weight: bold">if</span><span style="color: #666666">(</span>isOperand<span style="color: #666666">(</span>c<span style="color: #666666">)){</span>
+            operand<span style="color: #666666">.</span><span style="color: #7D9029">push</span><span style="color: #666666">(</span>ch<span style="color: #666666">-</span><span style="color: #BA2121">&#39;0&#39;</span><span style="color: #666666">);</span>
+        <span style="color: #666666">}</span>
+        <span style="color: #408080; font-style: italic">// if operator add it to operators and if the operator precedence is lower or equal to one below process available operator deom the stack</span>
+        <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> <span style="color: #666666">(</span>isOperator<span style="color: #666666">(</span>ch<span style="color: #666666">))</span> <span style="color: #666666">{</span>
+            <span style="color: #008000; font-weight: bold">while</span><span style="color: #666666">(!</span>operator<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">()</span> <span style="color: #666666">&amp;&amp;</span> precedence<span style="color: #666666">(</span>operator<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">())</span> <span style="color: #666666">&gt;=</span> precedence<span style="color: #666666">(</span>ch<span style="color: #666666">)){</span>
+                process<span style="color: #666666">(</span>opeartor<span style="color: #666666">,</span> operand<span style="color: #666666">)</span>
+            <span style="color: #666666">}</span>
+            operator<span style="color: #666666">.</span><span style="color: #7D9029">push</span><span style="color: #666666">(</span>ch<span style="color: #666666">);</span>
+        <span style="color: #666666">}</span> <span style="color: #408080; font-style: italic">// add below code if perentheses needs to be processed opening bracket add and closing bracket process</span>
+        <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> <span style="color: #666666">(</span>ch <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;(&#39;</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>            
+            operator<span style="color: #666666">.</span><span style="color: #7D9029">push</span><span style="color: #666666">(</span>ch<span style="color: #666666">);</span>        
+        <span style="color: #666666">}</span> 
+        <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> <span style="color: #666666">(</span>ch <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;)&#39;</span><span style="color: #666666">)</span> 
+        <span style="color: #666666">{</span>            
+            <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>operator<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">()</span> <span style="color: #666666">!=</span> <span style="color: #BA2121">&#39;(&#39;</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>                
+                process<span style="color: #666666">(</span>operator<span style="color: #666666">,</span> operand<span style="color: #666666">);</span>            
+            <span style="color: #666666">}</span>            
+            operator<span style="color: #666666">.</span><span style="color: #7D9029">pop</span><span style="color: #666666">();</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(!</span>operator<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>        
+        process<span style="color: #666666">(</span>operator<span style="color: #666666">,</span> operand<span style="color: #666666">);</span>    
+    <span style="color: #666666">}</span>
+    <span style="color: #008000; font-weight: bold">return</span> operand<span style="color: #666666">.</span><span style="color: #7D9029">pop</span><span style="color: #666666">();</span>
+<span style="color: #666666">}</span>
+
+<span style="color: #408080; font-style: italic">//helper method</span>
+
+<span style="color: #008000; font-weight: bold">private</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">boolean</span> <span style="color: #0000FF">isOperand</span><span style="color: #666666">(</span><span style="color: #B00040">char</span> ch<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">(</span>ch <span style="color: #666666">&gt;=</span> <span style="color: #BA2121">&#39;0&#39;</span><span style="color: #666666">)</span> <span style="color: #666666">&amp;&amp;</span> <span style="color: #666666">(</span>ch <span style="color: #666666">&lt;=</span> <span style="color: #BA2121">&#39;9&#39;</span><span style="color: #666666">);</span>
+<span style="color: #666666">}</span>
+
+<span style="color: #008000; font-weight: bold">private</span> <span style="color: #008000; font-weight: bold">static</span> boo<span style="border: 1px solid #FF0000">​</span>lean isOperator<span style="color: #666666">(</span><span style="color: #B00040">char</span> ch<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+    <span style="color: #008000; font-weight: bold">return</span> ch <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;+&#39;</span> <span style="color: #666666">||</span> ch <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;-&#39;</span> <span style="color: #666666">||</span> ch <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;*&#39;</span> <span style="color: #666666">||</span> ch <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;/&#39;</span><span style="color: #666666">;</span>
+<span style="color: #666666">}</span>
+
+<span style="color: #008000; font-weight: bold">private</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">precedence</span><span style="color: #666666">(</span><span style="color: #B00040">char</span> ch<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+    <span style="color: #008000; font-weight: bold">switch</span><span style="color: #666666">(</span>ch<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+        <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&#39;/&#39;</span><span style="color: #666666">:</span>        
+        <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&#39;*&#39;</span><span style="color: #666666">:</span> 
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">2;</span>        
+        <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&#39;+&#39;</span><span style="color: #666666">:</span>        
+        <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&#39;-&#39;</span><span style="color: #666666">:</span> 
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">1;</span>        
+        <span style="color: #008000; font-weight: bold">default</span><span style="color: #666666">:</span> 
+            <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">IllegalArgumentException</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Invalid operator: &quot;</span> <span style="color: #666666">+</span> ch<span style="color: #666666">);</span>    
+        <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+
+
+<span style="color: #008000; font-weight: bold">private</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">process</span><span style="color: #666666">(</span>Stack<span style="color: #666666">&lt;</span>Character<span style="color: #666666">&gt;</span> operator<span style="color: #666666">,</span> Stack<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> operand<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+    <span style="color: #B00040">int</span> num2 <span style="color: #666666">=</span> operand<span style="color: #666666">.</span><span style="color: #7D9029">pop</span><span style="color: #666666">();</span>    
+    <span style="color: #B00040">int</span> num1 <span style="color: #666666">=</span> operand<span style="color: #666666">.</span><span style="color: #7D9029">pop</span><span style="color: #666666">();</span>    
+    <span style="color: #B00040">char</span> op <span style="color: #666666">=</span> operator<span style="color: #666666">.</span><span style="color: #7D9029">pop</span><span style="color: #666666">();</span>    
+    <span style="color: #B00040">int</span> result <span style="color: #666666">=</span> <span style="color: #666666">0;</span>    
+    <span style="color: #008000; font-weight: bold">switch</span><span style="color: #666666">(</span>op<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+        <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&#39;/&#39;</span><span style="color: #666666">:</span> r
+            esult <span style="color: #666666">=</span> num1 <span style="color: #666666">/</span> num2<span style="color: #666666">;</span>            
+            <span style="color: #008000; font-weight: bold">break</span><span style="color: #666666">;</span>        
+        <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&#39;*&#39;</span><span style="color: #666666">:</span> 
+            result <span style="color: #666666">=</span> num1 <span style="color: #666666">*</span> num2<span style="color: #666666">;</span>            
+            <span style="color: #008000; font-weight: bold">break</span><span style="color: #666666">;</span>        
+        <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&#39;+&#39;</span><span style="color: #666666">:</span> 
+            result <span style="color: #666666">=</span> num1 <span style="color: #666666">+</span> num2<span style="color: #666666">;</span>            
+            <span style="color: #008000; font-weight: bold">break</span><span style="color: #666666">;</span>        
+        <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&#39;-&#39;</span><span style="color: #666666">:</span> 
+            result <span style="color: #666666">=</span> num1 <span style="color: #666666">-</span> num2<span style="color: #666666">;</span>            
+            <span style="color: #008000; font-weight: bold">break</span><span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>    
+        operand<span style="color: #666666">.</span><span style="color: #7D9029">push</span><span style="color: #666666">(</span>result<span style="color: #666666">);</span>
+<span style="color: #666666">}</span>
+</pre></div>

@@ -1,0 +1,39 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// We are considering combinations and not permutations, correct? </span>
+
+    <span style="color: #408080; font-style: italic">//The concept is simple - You create an array of the size -target amount + 1​.  Let&#39;s see how</span>
+    <span style="color: #408080; font-style: italic">// Here, we create an array A of size 6. Initially, all the values are 0. We set A[0] to 1, becauseif there are no coins, there is only 1 way to make 0 dollars. </span>
+    <span style="color: #408080; font-style: italic">//The array looks as follows</span>
+    <span style="color: #408080; font-style: italic">//[1,0,0,0,0,0]</span>
+    <span style="color: #408080; font-style: italic">// Now, let’s say we have only 1 dollar coins. How many ways are there to make $1? 1, of course. Ourarray becomes</span>
+    <span style="color: #408080; font-style: italic">// [1,1,0,0,0,0]</span>
+    <span style="color: #408080; font-style: italic">// numWays(N) = a[N] + a[N-Coin]</span>
+    
+    <span style="color: #408080; font-style: italic">// Propagating this formula for our $1 denomination, </span>
+    <span style="color: #408080; font-style: italic">// we keep calculating a[3], a[4] and a[5],</span>
+    <span style="color: #408080; font-style: italic">// a[3] = a[3] + a[3-1] = 1</span>
+    <span style="color: #408080; font-style: italic">// a[4] = a[4] + a[4-1] = 1</span>
+    <span style="color: #408080; font-style: italic">// a[5] = a[5] + a[5-1] = 1</span>
+    
+    <span style="color: #408080; font-style: italic">// Now, let’s add 2 dollar coins.</span>
+    <span style="color: #408080; font-style: italic">// a[1] = a[1] + a[1-2] = Don&#39;t update because a[1-2] is out of range</span>
+    <span style="color: #408080; font-style: italic">// a[2] = a[2] + a[0] = 2</span>
+    <span style="color: #408080; font-style: italic">// a[3] = a[3] + a[1] = 2</span>
+    <span style="color: #408080; font-style: italic">// a[4] = a[4] + a[2] = 3</span>
+    <span style="color: #408080; font-style: italic">// a[5] = a[5] + a[3] = 3</span>
+     
+    <span style="color: #408080; font-style: italic">// The array becomes:[1,1,2,2,3,3]</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">waysToMake</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> amount<span style="color: #666666">,</span> <span style="color: #B00040">int</span><span style="color: #666666">[]</span> coins<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+        <span style="color: #B00040">int</span><span style="color: #666666">[]</span> a <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">int</span><span style="color: #666666">[</span>amount<span style="color: #666666">+1];</span>
+        a<span style="color: #666666">[0]</span> <span style="color: #666666">=</span> <span style="color: #666666">1;</span>
+    
+        <span style="color: #408080; font-style: italic">// now for each coin apply the formula to propogate the array</span>
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> coin <span style="color: #666666">:</span> coins<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+            <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> i <span style="color: #666666">=</span> coin<span style="color: #666666">;</span> i <span style="color: #666666">&lt;=</span> amount<span style="color: #666666">;</span> i<span style="color: #666666">++)</span> <span style="color: #666666">{</span>
+                a<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">=</span> a<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">+</span> a<span style="color: #666666">[</span>i<span style="color: #666666">-</span>coin<span style="color: #666666">];</span>
+            <span style="color: #666666">}</span>
+        <span style="color: #666666">}</span>
+        <span style="color: #008000; font-weight: bold">return</span> a<span style="color: #666666">[</span>amount<span style="color: #666666">];</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

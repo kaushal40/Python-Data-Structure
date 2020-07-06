@@ -1,0 +1,47 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// Technique: Finding K smallest elements with a Heap</span>
+
+    <span style="color: #408080; font-style: italic">// One solution is to use a ​Min Heap​. We can insert each element of the array into the ​Min Heap​. Then,we extract the top of the heap ​k​ times to find the ​k​ smallest elements. </span>
+    <span style="color: #408080; font-style: italic">// Let’s see how efficient this is.</span>
+    
+    <span style="color: #408080; font-style: italic">// Let&#39;s revisit Min Heaps:1. Lookups for Min element are ​O(1)​.</span>
+    <span style="color: #408080; font-style: italic">// 2. Insertions are ​O(log(N))​, where ​N​​ is the number of elements in the heap.</span>
+    <span style="color: #408080; font-style: italic">// 3. Extracting the top element takes ​O(log(N))​ time.</span>
+    
+    <span style="color: #408080; font-style: italic">// min heap will take o(N) space and nlogn time which is worst than sorting so instead we should use max heap</span>
+    
+    <span style="color: #408080; font-style: italic">// if we use max heap of size K and only keep 4 elements more effiecient</span>
+    <span style="color: #408080; font-style: italic">// everty time we iterate throgh element if elemnt is less than top element remove top and add new one</span>
+    
+    <span style="color: #408080; font-style: italic">// Test Cases:</span>
+    <span style="color: #408080; font-style: italic">//Edge Cases: k &gt; a.length, k=a.length, k=0, array empty, array null</span>
+    <span style="color: #408080; font-style: italic">// Base Cases: k=1, k=2, array length is 1</span>
+    <span style="color: #408080; font-style: italic">// Regular Cases: K is less than a.length</span>
+    <span style="color: #408080; font-style: italic">// Time Complexity: O(Nlog(K))</span>
+    <span style="color: #408080; font-style: italic">// Space Complexity: O(K)</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">printKSmallest</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">,</span> <span style="color: #B00040">int</span> k<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>k <span style="color: #666666">&gt;</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">)</span>        
+            <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">IllegalArgumentException</span><span style="color: #666666">();</span>    
+            
+        <span style="color: #408080; font-style: italic">// In Java, the PriorityQueue class is a heap.​</span>
+        PriorityQueue<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> heap <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> PriorityQueue<span style="color: #666666">&lt;&gt;(</span>Collections<span style="color: #666666">.</span><span style="color: #7D9029">reverseOrder</span><span style="color: #666666">());</span>    
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0;</span> i <span style="color: #666666">&lt;</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">;</span> i<span style="color: #666666">++)</span> <span style="color: #666666">{</span>
+            <span style="color: #408080; font-style: italic">// add firat K elements to heap        </span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>i <span style="color: #666666">&lt;</span> k<span style="color: #666666">)</span>            
+                heap<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>a<span style="color: #666666">[</span>i<span style="color: #666666">]);</span>
+            <span style="color: #408080; font-style: italic">// if the new element is less thn top elemtnt in max heap swap    </span>
+            <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">&lt;</span> heap<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>            
+                heap<span style="color: #666666">.</span><span style="color: #7D9029">remove</span><span style="color: #666666">();</span>            
+                heap<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>a<span style="color: #666666">[</span>i<span style="color: #666666">]);</span>
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>    
+        <span style="color: #408080; font-style: italic">// print result    </span>
+        
+        Iterator<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> iter <span style="color: #666666">=</span> heap<span style="color: #666666">.</span><span style="color: #7D9029">iterator</span><span style="color: #666666">();</span>    
+        <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>iter<span style="color: #666666">.</span><span style="color: #7D9029">hasNext</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>        
+            System<span style="color: #666666">.</span><span style="color: #7D9029">out</span><span style="color: #666666">.</span><span style="color: #7D9029">println</span><span style="color: #666666">(</span>iter<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">());</span>    
+            <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+        
+    </pre></div>
+    

@@ -1,0 +1,50 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// Interview CampLevel: Medium</span>
+    <span style="color: #408080; font-style: italic">// You are given stock prices and the corresponding day of each stock price.</span>
+    <span style="color: #408080; font-style: italic">// (32, 1), (45, 1), (37,2), (42,3), .. Here, 32 is the price and 1 is the day of the price.</span>
+    
+    <span style="color: #408080; font-style: italic">// Your system should be able to tellthe maximum stock price in the last 3 days.</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">StockPriceWithTime</span> <span style="color: #666666">{</span>
+        Queue<span style="color: #666666">&lt;</span>Price<span style="color: #666666">&gt;</span> q<span style="color: #666666">;</span>
+        <span style="color: #B00040">int</span> window<span style="color: #666666">;</span>
+    
+        <span style="color: #408080; font-style: italic">// define the windowdays for which you want max price of stock</span>
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">StockPriceWithTime</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> windowDays<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            q <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> LinkedList<span style="color: #666666">&lt;&gt;();</span>        
+            window <span style="color: #666666">=</span> windowDays<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #408080; font-style: italic">//add the queue to have only items wihing three days range</span>
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">addPrice</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> price<span style="color: #666666">,</span> <span style="color: #B00040">int</span> day<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+            <span style="color: #008000; font-weight: bold">while</span><span style="color: #666666">(!</span>q<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">()</span> <span style="color: #666666">&amp;&amp;</span> q<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">().</span><span style="color: #7D9029">getDay</span><span style="color: #666666">()</span> <span style="color: #666666">&lt;</span> <span style="color: #666666">(</span>day <span style="color: #666666">-</span> window <span style="color: #666666">+</span> <span style="color: #666666">1))</span>
+                q<span style="color: #666666">.</span><span style="color: #7D9029">remove</span><span style="color: #666666">();</span>
+            
+            q<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">new</span> Price<span style="color: #666666">(</span>price<span style="color: #666666">,</span> day<span style="color: #666666">));</span>
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #408080; font-style: italic">// Returns max price in last 3 days</span>
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">getMaxPrice</span><span style="color: #666666">(){</span>
+            <span style="color: #B00040">int</span> maxPrice <span style="color: #666666">=</span> <span style="color: #666666">0;</span>
+            Iterator<span style="color: #666666">&lt;</span>Price<span style="color: #666666">&gt;</span> iter <span style="color: #666666">=</span> q<span style="color: #666666">.</span><span style="color: #7D9029">iterator</span><span style="color: #666666">();</span>
+            <span style="color: #008000; font-weight: bold">while</span> <span style="color: #666666">(</span>iter<span style="color: #666666">.</span><span style="color: #7D9029">hasNext</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>
+                <span style="color: #B00040">int</span> price <span style="color: #666666">=</span> <span style="color: #666666">((</span>Price<span style="color: #666666">)</span> iter<span style="color: #666666">.</span><span style="color: #7D9029">next</span><span style="color: #666666">()).</span><span style="color: #7D9029">getPrice</span><span style="color: #666666">();</span>
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>price <span style="color: #666666">&gt;</span> maxPrice<span style="color: #666666">)</span>
+                    maxPrice <span style="color: #666666">=</span> price<span style="color: #666666">;</span>
+            <span style="color: #666666">}</span>
+            <span style="color: #008000; font-weight: bold">return</span> maxPrice<span style="color: #666666">;</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    
+    <span style="color: #408080; font-style: italic">//helper code</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Price</span> <span style="color: #666666">{</span>    
+        <span style="color: #B00040">int</span> price<span style="color: #666666">;</span>    
+        <span style="color: #B00040">int</span> day<span style="color: #666666">;</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">Price</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> price<span style="color: #666666">,</span> <span style="color: #B00040">int</span> day<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">super</span><span style="color: #666666">();</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">price</span> <span style="color: #666666">=</span> price<span style="color: #666666">;</span>        
+            <span style="color: #008000; font-weight: bold">this</span><span style="color: #666666">.</span><span style="color: #7D9029">day</span> <span style="color: #666666">=</span> day<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

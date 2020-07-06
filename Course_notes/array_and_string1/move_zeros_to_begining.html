@@ -1,0 +1,25 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// you maintain the boundry and swap the elemnt when boundry is found</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">moveZeroesToBeginning</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #B00040">int</span> boundary <span style="color: #666666">=</span> <span style="color: #666666">0;</span>    
+        
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0;</span> i <span style="color: #666666">&lt;</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">;</span> i<span style="color: #666666">++)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">==</span> <span style="color: #666666">0)</span> <span style="color: #666666">{</span>            
+                Utils<span style="color: #666666">.</span><span style="color: #7D9029">swap</span><span style="color: #666666">(</span>a<span style="color: #666666">,</span> i<span style="color: #666666">,</span> boundary<span style="color: #666666">);</span>            
+                boundary <span style="color: #666666">+=</span> <span style="color: #666666">1;</span>        
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">moveZeroesToEnd</span><span style="color: #666666">(</span><span style="color: #B00040">int</span><span style="color: #666666">[]</span> a<span style="color: #666666">)</span> <span style="color: #666666">{</span>    
+        <span style="color: #B00040">int</span> boundary <span style="color: #666666">=</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">-</span> <span style="color: #666666">1;</span>    
+        
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span><span style="color: #B00040">int</span> i <span style="color: #666666">=</span> a<span style="color: #666666">.</span><span style="color: #7D9029">length</span> <span style="color: #666666">-</span> <span style="color: #666666">1;</span> i <span style="color: #666666">&gt;=</span> <span style="color: #666666">0;</span> i<span style="color: #666666">--)</span> <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>a<span style="color: #666666">[</span>i<span style="color: #666666">]</span> <span style="color: #666666">==</span> <span style="color: #666666">0)</span> <span style="color: #666666">{</span>            
+                Utils<span style="color: #666666">.</span><span style="color: #7D9029">swap</span><span style="color: #666666">(</span>a<span style="color: #666666">,</span> i<span style="color: #666666">,</span> boundary<span style="color: #666666">);</span>            
+                boundary<span style="color: #666666">--;</span>        
+            <span style="color: #666666">}</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

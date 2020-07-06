@@ -1,0 +1,69 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// Solution#1:When you insert a number A, Store a Pair of numbers on the stack. </span>
+    <span style="color: #408080; font-style: italic">// The first is A. The second is the Max element on the stack. It is simple to calculate this max.</span>
+    <span style="color: #408080; font-style: italic">// insert(A) </span>
+    <span style="color: #408080; font-style: italic">// max = Maximum of A and the current max    </span>
+    <span style="color: #408080; font-style: italic">// push(Pair&lt;A,max&gt;)</span>
+    
+    <span style="color: #408080; font-style: italic">// max()    </span>
+    <span style="color: #408080; font-style: italic">// return the max on the top of the stack</span>
+    
+    <span style="color: #408080; font-style: italic">// pop()    </span>
+    <span style="color: #408080; font-style: italic">// pop the pair on top, return value</span>
+    
+    
+    <span style="color: #408080; font-style: italic">// Solution#2</span>
+    <span style="color: #408080; font-style: italic">// Every time you encounter a new max, put it on a separate Max Stack. </span>
+    <span style="color: #408080; font-style: italic">// For example:Main: ​3​,1,​4​,2,​4​,​6​,3</span>
+    <span style="color: #408080; font-style: italic">// Max:  ​3​,​4​,​4​,​6</span>
+    
+    <span style="color: #408080; font-style: italic">// Here, the current max is 6 - the top of the Max stack. If you insert 8,that is the new max. </span>
+    <span style="color: #408080; font-style: italic">// Now it looks as follows:</span>
+    <span style="color: #408080; font-style: italic">// Main: 3,1,4,2,4,6,3,8</span>
+    <span style="color: #408080; font-style: italic">// Max:  3,4,4,6,8</span>
+    
+    <span style="color: #408080; font-style: italic">// If we do a pop(), we remove 8 from both Main and Max if the elements are same.</span>
+    <span style="color: #408080; font-style: italic">// Main: 3,1,4,2,4,6,3</span>
+    <span style="color: #408080; font-style: italic">// Max:  3,4,4,6</span>
+    
+    <span style="color: #408080; font-style: italic">// If we do a pop() again, we remove 3 from the Main stack, but since it isnot the max, we dont touch the Max stack.</span>
+    <span style="color: #408080; font-style: italic">// Main: 3,1,4,2,4,6</span>
+    <span style="color: #408080; font-style: italic">// Max:  3,4,4,6</span>
+    
+    
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">StackWithMax</span> <span style="color: #666666">{</span>    
+        Stack<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> main<span style="color: #666666">;</span>    
+        Stack<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> max<span style="color: #666666">;</span>
+    
+        <span style="color: #408080; font-style: italic">// Constructor</span>
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">StackWithMax</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            main <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> Stack<span style="color: #666666">&lt;&gt;();</span>        
+            max <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> Stack<span style="color: #666666">&lt;&gt;();</span>    
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #408080; font-style: italic">// Add new element, compare with max in max stack and if less than add if not leave</span>
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">push</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> a<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            main<span style="color: #666666">.</span><span style="color: #7D9029">push</span><span style="color: #666666">(</span>a<span style="color: #666666">);</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>max<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">()</span> <span style="color: #666666">||</span> a <span style="color: #666666">&gt;=</span> max<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">())</span>            
+                max<span style="color: #666666">.</span><span style="color: #7D9029">push</span><span style="color: #666666">(</span>a<span style="color: #666666">);</span>    
+            <span style="color: #666666">}</span>
+    
+        <span style="color: #408080; font-style: italic">// finding max is just peeking element from max</span>
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">max</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> EmptyStackException <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>max<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span>            
+                <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">EmptyStackException</span><span style="color: #666666">();</span>        
+            <span style="color: #008000; font-weight: bold">return</span> max<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">();</span>    
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #408080; font-style: italic">// now if you pop the element max get&#39;s updated if it is same as pooped item or else leve it</span>
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">pop</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> EmptyStackException <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>main<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span>            
+                <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">EmptyStackException</span><span style="color: #666666">();</span>        
+            <span style="color: #B00040">int</span> item <span style="color: #666666">=</span> main<span style="color: #666666">.</span><span style="color: #7D9029">pop</span><span style="color: #666666">();</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>max<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">()</span> <span style="color: #666666">==</span> item<span style="color: #666666">)</span>            
+                max<span style="color: #666666">.</span><span style="color: #7D9029">pop</span><span style="color: #666666">();</span>        
+            <span style="color: #008000; font-weight: bold">return</span> item<span style="color: #666666">;</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    </pre></div>
+    

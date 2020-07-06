@@ -1,0 +1,75 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">// The median element is the middle element</span>
+
+    <span style="color: #408080; font-style: italic">// Q. What is the median if there are even number of elements?</span>
+    <span style="color: #408080; font-style: italic">// A. Make it the average of the two middle numbers.</span>
+    
+    <span style="color: #408080; font-style: italic">// sol: we will use two heaps, one will be min heap and one will be max heap,  we keep same elements or one elment more in min heap if it is odd</span>
+    <span style="color: #408080; font-style: italic">// now if you want to find median, if even pop one from min + one form max/ 2, if odd pick the top from min heap</span>
+    
+    <span style="color: #408080; font-style: italic">// So when we add a new element, we ensure:</span>
+    <span style="color: #408080; font-style: italic">// 1.The heaps are equal in size, or</span>
+    <span style="color: #408080; font-style: italic">// 2.high​ is one larger than ​low​</span>
+    
+    <span style="color: #408080; font-style: italic">// Insert: O(logn)</span>
+    <span style="color: #408080; font-style: italic">// Median Lookup: O(1)</span>
+    <span style="color: #408080; font-style: italic">// Space Complexity: O(n)</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">RunningMedian</span> <span style="color: #666666">{</span>    
+        <span style="color: #008000; font-weight: bold">private</span> <span style="color: #008000; font-weight: bold">static</span> PriorityQueue<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> low<span style="color: #666666">;</span>    
+        <span style="color: #008000; font-weight: bold">private</span> <span style="color: #008000; font-weight: bold">static</span> PriorityQueue<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;</span> high<span style="color: #666666">;</span>    
+        
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">RunningMedian</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>        
+            low <span style="color: #666666">=</span> <span style="border: 1px solid #FF0000">​</span><span style="color: #008000; font-weight: bold">new</span> PriorityQueue<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;(</span>Collections<span style="color: #666666">.</span><span style="color: #7D9029">reverseOrder</span><span style="color: #666666">());</span><span style="border: 1px solid #FF0000">​</span> <span style="color: #408080; font-style: italic">// max heap       </span>
+            high <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> PriorityQueue<span style="color: #666666">&lt;</span>Integer<span style="color: #666666">&gt;();</span> <span style="color: #408080; font-style: italic">// min heap    </span>
+        <span style="color: #666666">}</span>
+    
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">double</span> <span style="color: #0000FF">getMedian</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> EmptyDatasetException <span style="color: #666666">{</span>        
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>low<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">()</span> <span style="color: #666666">==</span> <span style="color: #666666">0</span> <span style="color: #666666">&amp;&amp;</span> high<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">()</span> <span style="color: #666666">==</span> <span style="color: #666666">0)</span>            
+                <span style="color: #008000; font-weight: bold">throw</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #0000FF">EmptyDatasetException</span><span style="color: #666666">();</span>        
+            
+            <span style="color: #408080; font-style: italic">// if the heaps are same size</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>low<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">()</span> <span style="color: #666666">==</span> high<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">())</span>            
+                <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">(</span>low<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">()</span> <span style="color: #666666">+</span> high<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">())/2.0;</span> 
+    
+            <span style="color: #408080; font-style: italic">// else return the min heaps element as we keep one element more in mean heap, if odd       </span>
+            <span style="color: #008000; font-weight: bold">return</span> high<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">();</span>    
+        <span style="color: #666666">}</span>
+    
+        <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">insert</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> number<span style="color: #666666">)</span> <span style="color: #666666">{</span>        
+            
+            <span style="color: #408080; font-style: italic">// first enter in high</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>high<span style="color: #666666">.</span><span style="color: #7D9029">isEmpty</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>            
+                high<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>number<span style="color: #666666">);</span>            
+                <span style="color: #008000; font-weight: bold">return</span><span style="color: #666666">;</span>        
+            <span style="color: #666666">}</span>        
+            
+            <span style="color: #408080; font-style: italic">// if both sizes are equal</span>
+            <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>low<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">()</span> <span style="color: #666666">==</span> high<span style="color: #666666">.</span><span style="color: #7D9029">size</span><span style="color: #666666">())</span> <span style="color: #666666">{</span> 
+                <span style="color: #408080; font-style: italic">// if number is less than low           </span>
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>number <span style="color: #666666">&lt;</span> low<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>  
+                    <span style="color: #408080; font-style: italic">// remove low element and add it to high (minimum element should ho in mean heap)             </span>
+                    high<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>low<span style="color: #666666">.</span><span style="color: #7D9029">remove</span><span style="color: #666666">());</span>
+                    <span style="color: #408080; font-style: italic">// add new element to low                </span>
+                    low<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>number<span style="color: #666666">);</span>            
+                <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>
+                    <span style="color: #408080; font-style: italic">// eles add it to high                 </span>
+                    high<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>number<span style="color: #666666">);</span>            
+                <span style="color: #666666">}</span>        
+            <span style="color: #666666">}</span> <span style="color: #408080; font-style: italic">// if not equal size </span>
+            <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>            
+                <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">(</span>number <span style="color: #666666">&gt;</span> high<span style="color: #666666">.</span><span style="color: #7D9029">peek</span><span style="color: #666666">())</span> <span style="color: #666666">{</span>                
+                    low<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>high<span style="color: #666666">.</span><span style="color: #7D9029">remove</span><span style="color: #666666">());</span>                
+                    high<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>number<span style="color: #666666">);</span>            
+                <span style="color: #666666">}</span> <span style="color: #008000; font-weight: bold">else</span> <span style="color: #666666">{</span>                
+                    low<span style="color: #666666">.</span><span style="color: #7D9029">add</span><span style="color: #666666">(</span>number<span style="color: #666666">);</span>            
+                <span style="color: #666666">}</span>        
+            <span style="color: #666666">}</span>    
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">EmptyDatasetException</span> <span style="color: #008000; font-weight: bold">extends</span> Exception <span style="color: #666666">{</span>
+        
+    <span style="color: #666666">}</span>
+    </pre></div>
+    
